@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTopicClassMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTopicClass">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic_class" jdbcType="VARCHAR" property="topicClass" />
+    <result column="topic_class_name" jdbcType="VARCHAR" property="topicClassName" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="upper_topic_class" jdbcType="VARCHAR" property="upperTopicClass" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, topic_class, topic_class_name, created_time, level, upper_topic_class
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_topic_class
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTopicClass">
+    insert into cy_topic_class (id, topic_class, topic_class_name, 
+      created_time, level, upper_topic_class
+      )
+    values (#{id,jdbcType=INTEGER}, #{topicClass,jdbcType=VARCHAR}, #{topicClassName,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{level,jdbcType=INTEGER}, #{upperTopicClass,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTopicClass">
+    insert into cy_topic_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="topicClass != null">
+        topic_class,
+      </if>
+      <if test="topicClassName != null">
+        topic_class_name,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="upperTopicClass != null">
+        upper_topic_class,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="topicClass != null">
+        #{topicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicClassName != null">
+        #{topicClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="upperTopicClass != null">
+        #{upperTopicClass,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTopicClass">
+    update cy_topic_class
+    <set>
+      <if test="topicClass != null">
+        topic_class = #{topicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="topicClassName != null">
+        topic_class_name = #{topicClassName,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="upperTopicClass != null">
+        upper_topic_class = #{upperTopicClass,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTopicClass">
+    update cy_topic_class
+    set topic_class = #{topicClass,jdbcType=VARCHAR},
+      topic_class_name = #{topicClassName,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      level = #{level,jdbcType=INTEGER},
+      upper_topic_class = #{upperTopicClass,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

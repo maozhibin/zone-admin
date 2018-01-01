@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTwitterMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="twitter_type" jdbcType="VARCHAR" property="twitterType" />
+    <result column="read_rule" jdbcType="VARCHAR" property="readRule" />
+    <result column="reply_rule" jdbcType="VARCHAR" property="replyRule" />
+    <result column="has_atts" jdbcType="VARCHAR" property="hasAtts" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="topic_class" jdbcType="VARCHAR" property="topicClass" />
+    <result column="vote_can_add_option" jdbcType="INTEGER" property="voteCanAddOption" />
+    <result column="vote_multiple_choice" jdbcType="INTEGER" property="voteMultipleChoice" />
+    <result column="push_status" jdbcType="INTEGER" property="pushStatus" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="show_content" jdbcType="LONGVARCHAR" property="showContent" />
+    <result column="from_url" jdbcType="LONGVARCHAR" property="fromUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, twitter_id, uid, title, twitter_type, read_rule, reply_rule, has_atts, created_time, 
+    topic_class, vote_can_add_option, vote_multiple_choice, push_status, icon
+  </sql>
+  <sql id="Blob_Column_List">
+    content, show_content, from_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cy_twitter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    insert into cy_twitter (id, twitter_id, uid, 
+      title, twitter_type, read_rule, 
+      reply_rule, has_atts, created_time, 
+      topic_class, vote_can_add_option, vote_multiple_choice, 
+      push_status, icon, content, 
+      show_content, from_url)
+    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{twitterType,jdbcType=VARCHAR}, #{readRule,jdbcType=VARCHAR}, 
+      #{replyRule,jdbcType=VARCHAR}, #{hasAtts,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{topicClass,jdbcType=VARCHAR}, #{voteCanAddOption,jdbcType=INTEGER}, #{voteMultipleChoice,jdbcType=INTEGER}, 
+      #{pushStatus,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
+      #{showContent,jdbcType=LONGVARCHAR}, #{fromUrl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    insert into cy_twitter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="twitterType != null">
+        twitter_type,
+      </if>
+      <if test="readRule != null">
+        read_rule,
+      </if>
+      <if test="replyRule != null">
+        reply_rule,
+      </if>
+      <if test="hasAtts != null">
+        has_atts,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="topicClass != null">
+        topic_class,
+      </if>
+      <if test="voteCanAddOption != null">
+        vote_can_add_option,
+      </if>
+      <if test="voteMultipleChoice != null">
+        vote_multiple_choice,
+      </if>
+      <if test="pushStatus != null">
+        push_status,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="showContent != null">
+        show_content,
+      </if>
+      <if test="fromUrl != null">
+        from_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="twitterType != null">
+        #{twitterType,jdbcType=VARCHAR},
+      </if>
+      <if test="readRule != null">
+        #{readRule,jdbcType=VARCHAR},
+      </if>
+      <if test="replyRule != null">
+        #{replyRule,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAtts != null">
+        #{hasAtts,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicClass != null">
+        #{topicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="voteCanAddOption != null">
+        #{voteCanAddOption,jdbcType=INTEGER},
+      </if>
+      <if test="voteMultipleChoice != null">
+        #{voteMultipleChoice,jdbcType=INTEGER},
+      </if>
+      <if test="pushStatus != null">
+        #{pushStatus,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="showContent != null">
+        #{showContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fromUrl != null">
+        #{fromUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    update cy_twitter
+    <set>
+      <if test="twitterId != null">
+        twitter_id = #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="twitterType != null">
+        twitter_type = #{twitterType,jdbcType=VARCHAR},
+      </if>
+      <if test="readRule != null">
+        read_rule = #{readRule,jdbcType=VARCHAR},
+      </if>
+      <if test="replyRule != null">
+        reply_rule = #{replyRule,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAtts != null">
+        has_atts = #{hasAtts,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="topicClass != null">
+        topic_class = #{topicClass,jdbcType=VARCHAR},
+      </if>
+      <if test="voteCanAddOption != null">
+        vote_can_add_option = #{voteCanAddOption,jdbcType=INTEGER},
+      </if>
+      <if test="voteMultipleChoice != null">
+        vote_multiple_choice = #{voteMultipleChoice,jdbcType=INTEGER},
+      </if>
+      <if test="pushStatus != null">
+        push_status = #{pushStatus,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="showContent != null">
+        show_content = #{showContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fromUrl != null">
+        from_url = #{fromUrl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    update cy_twitter
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      twitter_type = #{twitterType,jdbcType=VARCHAR},
+      read_rule = #{readRule,jdbcType=VARCHAR},
+      reply_rule = #{replyRule,jdbcType=VARCHAR},
+      has_atts = #{hasAtts,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      topic_class = #{topicClass,jdbcType=VARCHAR},
+      vote_can_add_option = #{voteCanAddOption,jdbcType=INTEGER},
+      vote_multiple_choice = #{voteMultipleChoice,jdbcType=INTEGER},
+      push_status = #{pushStatus,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      show_content = #{showContent,jdbcType=LONGVARCHAR},
+      from_url = #{fromUrl,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitter">
+    update cy_twitter
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      twitter_type = #{twitterType,jdbcType=VARCHAR},
+      read_rule = #{readRule,jdbcType=VARCHAR},
+      reply_rule = #{replyRule,jdbcType=VARCHAR},
+      has_atts = #{hasAtts,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      topic_class = #{topicClass,jdbcType=VARCHAR},
+      vote_can_add_option = #{voteCanAddOption,jdbcType=INTEGER},
+      vote_multiple_choice = #{voteMultipleChoice,jdbcType=INTEGER},
+      push_status = #{pushStatus,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

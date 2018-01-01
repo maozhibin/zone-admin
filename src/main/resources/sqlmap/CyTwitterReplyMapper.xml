@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTwitterReplyMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="viewpoint_int" jdbcType="INTEGER" property="viewpointInt" />
+    <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, twitter_id, uid, pid, viewpoint_int, user_avatar, created_time, status
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cy_twitter_reply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    insert into cy_twitter_reply (id, twitter_id, uid, 
+      pid, viewpoint_int, user_avatar, 
+      created_time, status, content
+      )
+    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=VARCHAR}, #{viewpointInt,jdbcType=INTEGER}, #{userAvatar,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    insert into cy_twitter_reply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="viewpointInt != null">
+        viewpoint_int,
+      </if>
+      <if test="userAvatar != null">
+        user_avatar,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="viewpointInt != null">
+        #{viewpointInt,jdbcType=INTEGER},
+      </if>
+      <if test="userAvatar != null">
+        #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    update cy_twitter_reply
+    <set>
+      <if test="twitterId != null">
+        twitter_id = #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="viewpointInt != null">
+        viewpoint_int = #{viewpointInt,jdbcType=INTEGER},
+      </if>
+      <if test="userAvatar != null">
+        user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    update cy_twitter_reply
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      viewpoint_int = #{viewpointInt,jdbcType=INTEGER},
+      user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterReply">
+    update cy_twitter_reply
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      viewpoint_int = #{viewpointInt,jdbcType=INTEGER},
+      user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

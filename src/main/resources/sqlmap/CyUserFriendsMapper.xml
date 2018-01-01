@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyUserFriendsMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyUserFriends">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="friend_uid" jdbcType="VARCHAR" property="friendUid" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, friend_uid, created_time, status, group_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_user_friends
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUserFriends">
+    insert into cy_user_friends (id, uid, friend_uid, 
+      created_time, status, group_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{friendUid,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{groupName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserFriends">
+    insert into cy_user_friends
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="friendUid != null">
+        friend_uid,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendUid != null">
+        #{friendUid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserFriends">
+    update cy_user_friends
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="friendUid != null">
+        friend_uid = #{friendUid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyUserFriends">
+    update cy_user_friends
+    set uid = #{uid,jdbcType=VARCHAR},
+      friend_uid = #{friendUid,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      group_name = #{groupName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

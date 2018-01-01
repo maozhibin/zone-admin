@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTwitterVoteRecordMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    <result column="vote_record" jdbcType="LONGVARCHAR" property="voteRecord" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, twitter_id, created_time, uid
+  </sql>
+  <sql id="Blob_Column_List">
+    vote_record
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cy_twitter_vote_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    insert into cy_twitter_vote_record (id, twitter_id, created_time, 
+      uid, vote_record)
+    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{uid,jdbcType=VARCHAR}, #{voteRecord,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    insert into cy_twitter_vote_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="voteRecord != null">
+        vote_record,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="voteRecord != null">
+        #{voteRecord,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    update cy_twitter_vote_record
+    <set>
+      <if test="twitterId != null">
+        twitter_id = #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="voteRecord != null">
+        vote_record = #{voteRecord,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    update cy_twitter_vote_record
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      uid = #{uid,jdbcType=VARCHAR},
+      vote_record = #{voteRecord,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterVoteRecord">
+    update cy_twitter_vote_record
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      uid = #{uid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

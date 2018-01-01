@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyBannerMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyBanner">
+    <id column="banner_id" jdbcType="VARCHAR" property="bannerId" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="delivery_vip_level" jdbcType="VARCHAR" property="deliveryVipLevel" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyBanner">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="click_url" jdbcType="LONGVARCHAR" property="clickUrl" />
+    <result column="delivery_topic_class" jdbcType="LONGVARCHAR" property="deliveryTopicClass" />
+    <result column="delivery_topic" jdbcType="LONGVARCHAR" property="deliveryTopic" />
+    <result column="delivery_rule_ext" jdbcType="LONGVARCHAR" property="deliveryRuleExt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    banner_id, created_time, start_time, end_time, delivery_vip_level
+  </sql>
+  <sql id="Blob_Column_List">
+    content, click_url, delivery_topic_class, delivery_topic, delivery_rule_ext
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cy_banner
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyBanner">
+    insert into cy_banner (banner_id, created_time, start_time, 
+      end_time, delivery_vip_level, content, 
+      click_url, delivery_topic_class, delivery_topic, 
+      delivery_rule_ext)
+    values (#{bannerId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{deliveryVipLevel,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, 
+      #{clickUrl,jdbcType=LONGVARCHAR}, #{deliveryTopicClass,jdbcType=LONGVARCHAR}, #{deliveryTopic,jdbcType=LONGVARCHAR}, 
+      #{deliveryRuleExt,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyBanner">
+    insert into cy_banner
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bannerId != null">
+        banner_id,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="deliveryVipLevel != null">
+        delivery_vip_level,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="clickUrl != null">
+        click_url,
+      </if>
+      <if test="deliveryTopicClass != null">
+        delivery_topic_class,
+      </if>
+      <if test="deliveryTopic != null">
+        delivery_topic,
+      </if>
+      <if test="deliveryRuleExt != null">
+        delivery_rule_ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bannerId != null">
+        #{bannerId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryVipLevel != null">
+        #{deliveryVipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="clickUrl != null">
+        #{clickUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryTopicClass != null">
+        #{deliveryTopicClass,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryTopic != null">
+        #{deliveryTopic,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryRuleExt != null">
+        #{deliveryRuleExt,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyBanner">
+    update cy_banner
+    <set>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryVipLevel != null">
+        delivery_vip_level = #{deliveryVipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="clickUrl != null">
+        click_url = #{clickUrl,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryTopicClass != null">
+        delivery_topic_class = #{deliveryTopicClass,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryTopic != null">
+        delivery_topic = #{deliveryTopic,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="deliveryRuleExt != null">
+        delivery_rule_ext = #{deliveryRuleExt,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyBanner">
+    update cy_banner
+    set created_time = #{createdTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      delivery_vip_level = #{deliveryVipLevel,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      click_url = #{clickUrl,jdbcType=LONGVARCHAR},
+      delivery_topic_class = #{deliveryTopicClass,jdbcType=LONGVARCHAR},
+      delivery_topic = #{deliveryTopic,jdbcType=LONGVARCHAR},
+      delivery_rule_ext = #{deliveryRuleExt,jdbcType=LONGVARCHAR}
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyBanner">
+    update cy_banner
+    set created_time = #{createdTime,jdbcType=TIMESTAMP},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      delivery_vip_level = #{deliveryVipLevel,jdbcType=VARCHAR}
+    where banner_id = #{bannerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

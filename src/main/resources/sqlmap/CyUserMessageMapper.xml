@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyUserMessageMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyUserMessage">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="udi" jdbcType="VARCHAR" property="udi" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
+    <result column="drop_time" jdbcType="TIMESTAMP" property="dropTime" />
+    <result column="msg_type" jdbcType="VARCHAR" property="msgType" />
+    <result column="show_url" jdbcType="VARCHAR" property="showUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, content, icon, status, udi, created_time, read_time, drop_time, msg_type, 
+    show_url
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_user_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUserMessage">
+    insert into cy_user_message (id, title, content, 
+      icon, status, udi, 
+      created_time, read_time, drop_time, 
+      msg_type, show_url)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{udi,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{readTime,jdbcType=TIMESTAMP}, #{dropTime,jdbcType=TIMESTAMP}, 
+      #{msgType,jdbcType=VARCHAR}, #{showUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserMessage">
+    insert into cy_user_message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="udi != null">
+        udi,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="readTime != null">
+        read_time,
+      </if>
+      <if test="dropTime != null">
+        drop_time,
+      </if>
+      <if test="msgType != null">
+        msg_type,
+      </if>
+      <if test="showUrl != null">
+        show_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="udi != null">
+        #{udi,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readTime != null">
+        #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dropTime != null">
+        #{dropTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgType != null">
+        #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="showUrl != null">
+        #{showUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserMessage">
+    update cy_user_message
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="udi != null">
+        udi = #{udi,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="readTime != null">
+        read_time = #{readTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dropTime != null">
+        drop_time = #{dropTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msgType != null">
+        msg_type = #{msgType,jdbcType=VARCHAR},
+      </if>
+      <if test="showUrl != null">
+        show_url = #{showUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyUserMessage">
+    update cy_user_message
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      udi = #{udi,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      read_time = #{readTime,jdbcType=TIMESTAMP},
+      drop_time = #{dropTime,jdbcType=TIMESTAMP},
+      msg_type = #{msgType,jdbcType=VARCHAR},
+      show_url = #{showUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

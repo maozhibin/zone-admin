@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTwitterActivityDetailMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail">
+    <id column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="activity_area" jdbcType="VARCHAR" property="activityArea" />
+    <result column="activity_time" jdbcType="TIMESTAMP" property="activityTime" />
+    <result column="x_coordinates" jdbcType="VARCHAR" property="xCoordinates" />
+    <result column="map_type" jdbcType="VARCHAR" property="mapType" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    twitter_id, activity_area, activity_time, x_coordinates, map_type, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_twitter_activity_detail
+    where twitter_id = #{twitterId,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail">
+    insert into cy_twitter_activity_detail (twitter_id, activity_area, activity_time, 
+      x_coordinates, map_type, created_time
+      )
+    values (#{twitterId,jdbcType=VARCHAR}, #{activityArea,jdbcType=VARCHAR}, #{activityTime,jdbcType=TIMESTAMP}, 
+      #{xCoordinates,jdbcType=VARCHAR}, #{mapType,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail">
+    insert into cy_twitter_activity_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="activityArea != null">
+        activity_area,
+      </if>
+      <if test="activityTime != null">
+        activity_time,
+      </if>
+      <if test="xCoordinates != null">
+        x_coordinates,
+      </if>
+      <if test="mapType != null">
+        map_type,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityArea != null">
+        #{activityArea,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        #{activityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xCoordinates != null">
+        #{xCoordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null">
+        #{mapType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail">
+    update cy_twitter_activity_detail
+    <set>
+      <if test="activityArea != null">
+        activity_area = #{activityArea,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        activity_time = #{activityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="xCoordinates != null">
+        x_coordinates = #{xCoordinates,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null">
+        map_type = #{mapType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where twitter_id = #{twitterId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail">
+    update cy_twitter_activity_detail
+    set activity_area = #{activityArea,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=TIMESTAMP},
+      x_coordinates = #{xCoordinates,jdbcType=VARCHAR},
+      map_type = #{mapType,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where twitter_id = #{twitterId,jdbcType=VARCHAR}
+  </update>
+</mapper>

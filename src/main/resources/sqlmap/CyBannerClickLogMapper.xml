@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyBannerClickLogMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyBannerClickLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="banner_id" jdbcType="VARCHAR" property="bannerId" />
+    <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="has_fee" jdbcType="VARCHAR" property="hasFee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, banner_id, twitter_id, uid, created_time, has_fee
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_banner_click_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyBannerClickLog">
+    insert into cy_banner_click_log (id, banner_id, twitter_id, 
+      uid, created_time, has_fee
+      )
+    values (#{id,jdbcType=INTEGER}, #{bannerId,jdbcType=VARCHAR}, #{twitterId,jdbcType=VARCHAR}, 
+      #{uid,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{hasFee,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyBannerClickLog">
+    insert into cy_banner_click_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="bannerId != null">
+        banner_id,
+      </if>
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="hasFee != null">
+        has_fee,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bannerId != null">
+        #{bannerId,jdbcType=VARCHAR},
+      </if>
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasFee != null">
+        #{hasFee,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyBannerClickLog">
+    update cy_banner_click_log
+    <set>
+      <if test="bannerId != null">
+        banner_id = #{bannerId,jdbcType=VARCHAR},
+      </if>
+      <if test="twitterId != null">
+        twitter_id = #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hasFee != null">
+        has_fee = #{hasFee,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyBannerClickLog">
+    update cy_banner_click_log
+    set banner_id = #{bannerId,jdbcType=VARCHAR},
+      twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      has_fee = #{hasFee,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

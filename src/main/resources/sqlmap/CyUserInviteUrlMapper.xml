@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyUserInviteUrlMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyUserInviteUrl">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="invite_model" jdbcType="VARCHAR" property="inviteModel" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="invite_url" jdbcType="VARCHAR" property="inviteUrl" />
+    <result column="invite_code" jdbcType="VARCHAR" property="inviteCode" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, uid, invite_model, created_time, invite_url, invite_code
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_user_invite_url
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUserInviteUrl">
+    insert into cy_user_invite_url (id, uid, invite_model, 
+      created_time, invite_url, invite_code
+      )
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{inviteModel,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{inviteUrl,jdbcType=VARCHAR}, #{inviteCode,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserInviteUrl">
+    insert into cy_user_invite_url
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="inviteModel != null">
+        invite_model,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="inviteUrl != null">
+        invite_url,
+      </if>
+      <if test="inviteCode != null">
+        invite_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteModel != null">
+        #{inviteModel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteUrl != null">
+        #{inviteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        #{inviteCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUserInviteUrl">
+    update cy_user_invite_url
+    <set>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteModel != null">
+        invite_model = #{inviteModel,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inviteUrl != null">
+        invite_url = #{inviteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteCode != null">
+        invite_code = #{inviteCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyUserInviteUrl">
+    update cy_user_invite_url
+    set uid = #{uid,jdbcType=VARCHAR},
+      invite_model = #{inviteModel,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      invite_url = #{inviteUrl,jdbcType=VARCHAR},
+      invite_code = #{inviteCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

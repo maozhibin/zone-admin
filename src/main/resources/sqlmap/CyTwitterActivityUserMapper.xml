@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cunyun.zoneadmin.dal.dao.CyTwitterActivityUserMapper">
+  <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitterActivityUser">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, twitter_id, uid, user_avatar, add_time, status, created_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cy_twitter_activity_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityUser">
+    insert into cy_twitter_activity_user (id, twitter_id, uid, 
+      user_avatar, add_time, status, 
+      created_time)
+    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{userAvatar,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityUser">
+    insert into cy_twitter_activity_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="twitterId != null">
+        twitter_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="userAvatar != null">
+        user_avatar,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="twitterId != null">
+        #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatar != null">
+        #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityUser">
+    update cy_twitter_activity_user
+    <set>
+      <if test="twitterId != null">
+        twitter_id = #{twitterId,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatar != null">
+        user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterActivityUser">
+    update cy_twitter_activity_user
+    set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR},
+      created_time = #{createdTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
