@@ -9,7 +9,7 @@ import java.util.Map;
 public class JsonResponseMsg implements Serializable {
 
     private static final long serialVersionUID = -6067549589990462156L;
-    public static final int CODE_SUCCESS = 0;
+    public static final int CODE_SUCCESS = 200;
     public static final String MSG_SUCCESS = "success";
 
     public static final int CODE_FAIL = 1;

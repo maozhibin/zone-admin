@@ -30,17 +30,77 @@
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyUser">
     <result column="cid" jdbcType="LONGVARCHAR" property="cid" />
   </resultMap>
+
+  <select id="totalCount" resultType="int">
+    SELECT
+        COUNT(1) count
+    FROM
+    cy_user y LEFT JOIN cy_user r ON y.invite_uid = r.uid
+    WHERE 1=1
+    <include refid="query_user_where"></include>
+  </select>
+
+  <select id="list" resultType="com.cunyun.zoneadmin.dto.CyUserDto">
+    SELECT
+    y.id,
+    y.uid,
+    r.nick_name uidNickName,
+    y.nick_name nickName,
+    y.user_avatar userAvatar,
+    y.user_sign userSign,
+    y.user_mobile userMobile,
+    y.user_type userType,
+    y.wc_user_name wcUserName,
+    y.wc_nick_name wcNickName,
+    y.invite_uid inviteUid,
+    y.wc_qr_code wcQrCode,
+    y.last_login_time lastLoginTime,
+    y.created_time createdTime,
+    y.update_time updateTime,
+    y.STATUS,
+    y.ali_user_name aliUserNamee,
+    y.ali_nick_name aliNickName,
+    y.ali_userid aliUserid,
+    y.vip_level vipLevel,
+    y.cy_score_count cyScoreCount,
+    y.cy_score_balance cyScoreBalance,
+    y.balance,
+    y.NAME,
+    y.cid,
+    y.is_real_name isRealName,
+    y.is_real_mobile isRealMobile
+    FROM
+    cy_user y LEFT JOIN cy_user r ON y.invite_uid = r.uid
+    WHERE
+    1 = 1
+    <include refid="query_user_where"></include>
+    LIMIT #{begin},#{end}
+  </select>
+
+  <sql id="query_user_where">
+    <if test="nickName != null and nickName != '' ">
+      and y.nick_name = #{nickName,jdbcType=VARCHAR}
+    </if>
+    <if test="userType != null and userType != '' ">
+      and y.user_type = #{userType,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null and status != '' ">
+      and y.status = #{status,jdbcType=VARCHAR}
+    </if>
+  </sql>
+
+
   <sql id="Base_Column_List">
-    id, uid, nick_name, user_avatar, user_sign, user_mobile, user_type, wc_user_name, 
-    wc_nick_name, invite_uid, wc_qr_code, last_login_time, created_time, status, ali_user_name, 
-    ali_nick_name, ali_userid, vip_level, cy_score_count, cy_score_balance, balance, 
+    id, uid, nick_name, user_avatar, user_sign, user_mobile, user_type, wc_user_name,
+    wc_nick_name, invite_uid, wc_qr_code, last_login_time, created_time, status, ali_user_name,
+    ali_nick_name, ali_userid, vip_level, cy_score_count, cy_score_balance, balance,
     name, is_real_name, is_real_mobile
   </sql>
   <sql id="Blob_Column_List">
     cid
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -48,24 +108,24 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUser">
-    insert into cy_user (id, uid, nick_name, 
-      user_avatar, user_sign, user_mobile, 
-      user_type, wc_user_name, wc_nick_name, 
-      invite_uid, wc_qr_code, last_login_time, 
-      created_time, status, ali_user_name, 
-      ali_nick_name, ali_userid, vip_level, 
-      cy_score_count, cy_score_balance, balance, 
-      name, is_real_name, is_real_mobile, 
-      cid)
-    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{userAvatar,jdbcType=VARCHAR}, #{userSign,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=VARCHAR}, #{wcUserName,jdbcType=VARCHAR}, #{wcNickName,jdbcType=VARCHAR}, 
-      #{inviteUid,jdbcType=VARCHAR}, #{wcQrCode,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{aliUserName,jdbcType=VARCHAR}, 
-      #{aliNickName,jdbcType=VARCHAR}, #{aliUserid,jdbcType=VARCHAR}, #{vipLevel,jdbcType=VARCHAR}, 
-      #{cyScoreCount,jdbcType=INTEGER}, #{cyScoreBalance,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER}, 
-      #{name,jdbcType=VARCHAR}, #{isRealName,jdbcType=INTEGER}, #{isRealMobile,jdbcType=INTEGER}, 
-      #{cid,jdbcType=LONGVARCHAR})
+    insert into cy_user (id, uid, nick_name,
+    user_avatar, user_sign, user_mobile,
+    user_type, wc_user_name, wc_nick_name,
+    invite_uid, wc_qr_code, last_login_time,
+    created_time, status, ali_user_name,
+    ali_nick_name, ali_userid, vip_level,
+    cy_score_count, cy_score_balance, balance,
+    name, is_real_name, is_real_mobile,
+    cid)
+    values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+    #{userAvatar,jdbcType=VARCHAR}, #{userSign,jdbcType=VARCHAR}, #{userMobile,jdbcType=VARCHAR},
+    #{userType,jdbcType=VARCHAR}, #{wcUserName,jdbcType=VARCHAR}, #{wcNickName,jdbcType=VARCHAR},
+    #{inviteUid,jdbcType=VARCHAR}, #{wcQrCode,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP},
+    #{createdTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{aliUserName,jdbcType=VARCHAR},
+    #{aliNickName,jdbcType=VARCHAR}, #{aliUserid,jdbcType=VARCHAR}, #{vipLevel,jdbcType=VARCHAR},
+    #{cyScoreCount,jdbcType=INTEGER}, #{cyScoreBalance,jdbcType=INTEGER}, #{balance,jdbcType=INTEGER},
+    #{name,jdbcType=VARCHAR}, #{isRealName,jdbcType=INTEGER}, #{isRealMobile,jdbcType=INTEGER},
+    #{cid,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyUser">
     insert into cy_user
@@ -305,56 +365,57 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyUser">
     update cy_user
     set uid = #{uid,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      user_avatar = #{userAvatar,jdbcType=VARCHAR},
-      user_sign = #{userSign,jdbcType=VARCHAR},
-      user_mobile = #{userMobile,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=VARCHAR},
-      wc_user_name = #{wcUserName,jdbcType=VARCHAR},
-      wc_nick_name = #{wcNickName,jdbcType=VARCHAR},
-      invite_uid = #{inviteUid,jdbcType=VARCHAR},
-      wc_qr_code = #{wcQrCode,jdbcType=VARCHAR},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      ali_user_name = #{aliUserName,jdbcType=VARCHAR},
-      ali_nick_name = #{aliNickName,jdbcType=VARCHAR},
-      ali_userid = #{aliUserid,jdbcType=VARCHAR},
-      vip_level = #{vipLevel,jdbcType=VARCHAR},
-      cy_score_count = #{cyScoreCount,jdbcType=INTEGER},
-      cy_score_balance = #{cyScoreBalance,jdbcType=INTEGER},
-      balance = #{balance,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      is_real_name = #{isRealName,jdbcType=INTEGER},
-      is_real_mobile = #{isRealMobile,jdbcType=INTEGER},
-      cid = #{cid,jdbcType=LONGVARCHAR}
+    nick_name = #{nickName,jdbcType=VARCHAR},
+    user_avatar = #{userAvatar,jdbcType=VARCHAR},
+    user_sign = #{userSign,jdbcType=VARCHAR},
+    user_mobile = #{userMobile,jdbcType=VARCHAR},
+    user_type = #{userType,jdbcType=VARCHAR},
+    wc_user_name = #{wcUserName,jdbcType=VARCHAR},
+    wc_nick_name = #{wcNickName,jdbcType=VARCHAR},
+    invite_uid = #{inviteUid,jdbcType=VARCHAR},
+    wc_qr_code = #{wcQrCode,jdbcType=VARCHAR},
+    last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+    created_time = #{createdTime,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=VARCHAR},
+    ali_user_name = #{aliUserName,jdbcType=VARCHAR},
+    ali_nick_name = #{aliNickName,jdbcType=VARCHAR},
+    ali_userid = #{aliUserid,jdbcType=VARCHAR},
+    vip_level = #{vipLevel,jdbcType=VARCHAR},
+    cy_score_count = #{cyScoreCount,jdbcType=INTEGER},
+    cy_score_balance = #{cyScoreBalance,jdbcType=INTEGER},
+    balance = #{balance,jdbcType=INTEGER},
+    name = #{name,jdbcType=VARCHAR},
+    is_real_name = #{isRealName,jdbcType=INTEGER},
+    is_real_mobile = #{isRealMobile,jdbcType=INTEGER},
+    cid = #{cid,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyUser">
     update cy_user
     set uid = #{uid,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      user_avatar = #{userAvatar,jdbcType=VARCHAR},
-      user_sign = #{userSign,jdbcType=VARCHAR},
-      user_mobile = #{userMobile,jdbcType=VARCHAR},
-      user_type = #{userType,jdbcType=VARCHAR},
-      wc_user_name = #{wcUserName,jdbcType=VARCHAR},
-      wc_nick_name = #{wcNickName,jdbcType=VARCHAR},
-      invite_uid = #{inviteUid,jdbcType=VARCHAR},
-      wc_qr_code = #{wcQrCode,jdbcType=VARCHAR},
-      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=VARCHAR},
-      ali_user_name = #{aliUserName,jdbcType=VARCHAR},
-      ali_nick_name = #{aliNickName,jdbcType=VARCHAR},
-      ali_userid = #{aliUserid,jdbcType=VARCHAR},
-      vip_level = #{vipLevel,jdbcType=VARCHAR},
-      cy_score_count = #{cyScoreCount,jdbcType=INTEGER},
-      cy_score_balance = #{cyScoreBalance,jdbcType=INTEGER},
-      balance = #{balance,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      is_real_name = #{isRealName,jdbcType=INTEGER},
-      is_real_mobile = #{isRealMobile,jdbcType=INTEGER}
+    nick_name = #{nickName,jdbcType=VARCHAR},
+    user_avatar = #{userAvatar,jdbcType=VARCHAR},
+    user_sign = #{userSign,jdbcType=VARCHAR},
+    user_mobile = #{userMobile,jdbcType=VARCHAR},
+    user_type = #{userType,jdbcType=VARCHAR},
+    wc_user_name = #{wcUserName,jdbcType=VARCHAR},
+    wc_nick_name = #{wcNickName,jdbcType=VARCHAR},
+    invite_uid = #{inviteUid,jdbcType=VARCHAR},
+    wc_qr_code = #{wcQrCode,jdbcType=VARCHAR},
+    last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+    created_time = #{createdTime,jdbcType=TIMESTAMP},
+    status = #{status,jdbcType=VARCHAR},
+    ali_user_name = #{aliUserName,jdbcType=VARCHAR},
+    ali_nick_name = #{aliNickName,jdbcType=VARCHAR},
+    ali_userid = #{aliUserid,jdbcType=VARCHAR},
+    vip_level = #{vipLevel,jdbcType=VARCHAR},
+    cy_score_count = #{cyScoreCount,jdbcType=INTEGER},
+    cy_score_balance = #{cyScoreBalance,jdbcType=INTEGER},
+    balance = #{balance,jdbcType=INTEGER},
+    name = #{name,jdbcType=VARCHAR},
+    is_real_name = #{isRealName,jdbcType=INTEGER},
+    is_real_mobile = #{isRealMobile,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -5,6 +5,41 @@ import java.util.Date;
 public class CyTwitter {
     private Integer id;
 
+    private Integer idx;
+
+    @Override
+    public String toString() {
+        return "CyTwitter{" +
+                "id=" + id +
+                ", idx=" + idx +
+                ", twitterId='" + twitterId + '\'' +
+                ", uid='" + uid + '\'' +
+                ", title='" + title + '\'' +
+                ", twitterType='" + twitterType + '\'' +
+                ", readRule='" + readRule + '\'' +
+                ", replyRule='" + replyRule + '\'' +
+                ", hasAtts='" + hasAtts + '\'' +
+                ", createdTime=" + createdTime +
+                ", topicClass='" + topicClass + '\'' +
+                ", voteCanAddOption=" + voteCanAddOption +
+                ", voteMultipleChoice=" + voteMultipleChoice +
+                ", pushStatus=" + pushStatus +
+                ", icon='" + icon + '\'' +
+                ", content='" + content + '\'' +
+                ", showContent='" + showContent + '\'' +
+                ", fromUrl='" + fromUrl + '\'' +
+                '}';
+    }
+
+    public void setIdx(Integer idx) {
+        this.idx = idx;
+    }
+
+    public Integer getIdx() {
+
+        return idx;
+    }
+
     private String twitterId;
 
     private String uid;
@@ -173,30 +208,4 @@ public class CyTwitter {
         this.fromUrl = fromUrl;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", twitterId=").append(twitterId);
-        sb.append(", uid=").append(uid);
-        sb.append(", title=").append(title);
-        sb.append(", twitterType=").append(twitterType);
-        sb.append(", readRule=").append(readRule);
-        sb.append(", replyRule=").append(replyRule);
-        sb.append(", hasAtts=").append(hasAtts);
-        sb.append(", createdTime=").append(createdTime);
-        sb.append(", topicClass=").append(topicClass);
-        sb.append(", voteCanAddOption=").append(voteCanAddOption);
-        sb.append(", voteMultipleChoice=").append(voteMultipleChoice);
-        sb.append(", pushStatus=").append(pushStatus);
-        sb.append(", icon=").append(icon);
-        sb.append(", content=").append(content);
-        sb.append(", showContent=").append(showContent);
-        sb.append(", fromUrl=").append(fromUrl);
-        sb.append("]");
-        return sb.toString();
-    }
 }
