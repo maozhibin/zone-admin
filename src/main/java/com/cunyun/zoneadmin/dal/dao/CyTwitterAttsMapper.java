@@ -11,7 +11,5 @@ public interface CyTwitterAttsMapper {
 
     int updateByPrimaryKeySelective(CyTwitterAtts record);
 
-    int updateByPrimaryKeyWithBLOBs(CyTwitterAtts record);
-
     int updateByPrimaryKey(CyTwitterAtts record);
 }

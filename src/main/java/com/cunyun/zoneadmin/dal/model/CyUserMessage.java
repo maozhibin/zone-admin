@@ -13,7 +13,7 @@ public class CyUserMessage {
 
     private Integer status;
 
-    private String udi;
+    private String uid;
 
     private Date createdTime;
 
@@ -65,12 +65,12 @@ public class CyUserMessage {
         this.status = status;
     }
 
-    public String getUdi() {
-        return udi;
+    public String getUid() {
+        return uid;
     }
 
-    public void setUdi(String udi) {
-        this.udi = udi;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public Date getCreatedTime() {
@@ -124,7 +124,7 @@ public class CyUserMessage {
         sb.append(", content=").append(content);
         sb.append(", icon=").append(icon);
         sb.append(", status=").append(status);
-        sb.append(", udi=").append(udi);
+        sb.append(", uid=").append(uid);
         sb.append(", createdTime=").append(createdTime);
         sb.append(", readTime=").append(readTime);
         sb.append(", dropTime=").append(dropTime);

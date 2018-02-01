@@ -7,7 +7,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="udi" jdbcType="VARCHAR" property="udi" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="read_time" jdbcType="TIMESTAMP" property="readTime" />
     <result column="drop_time" jdbcType="TIMESTAMP" property="dropTime" />
@@ -15,7 +15,7 @@
     <result column="show_url" jdbcType="VARCHAR" property="showUrl" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, title, content, icon, status, udi, created_time, read_time, drop_time, msg_type, 
+    id, title, content, icon, status, uid, created_time, read_time, drop_time, msg_type, 
     show_url
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -26,11 +26,11 @@
   </select>
   <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUserMessage">
     insert into cy_user_message (id, title, content, 
-      icon, status, udi, 
+      icon, status, uid, 
       created_time, read_time, drop_time, 
       msg_type, show_url)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{icon,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{udi,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{readTime,jdbcType=TIMESTAMP}, #{dropTime,jdbcType=TIMESTAMP}, 
       #{msgType,jdbcType=VARCHAR}, #{showUrl,jdbcType=VARCHAR})
   </insert>
@@ -52,8 +52,8 @@
       <if test="status != null">
         status,
       </if>
-      <if test="udi != null">
-        udi,
+      <if test="uid != null">
+        uid,
       </if>
       <if test="createdTime != null">
         created_time,
@@ -87,8 +87,8 @@
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="udi != null">
-        #{udi,jdbcType=VARCHAR},
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
@@ -122,8 +122,8 @@
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="udi != null">
-        udi = #{udi,jdbcType=VARCHAR},
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null">
         created_time = #{createdTime,jdbcType=TIMESTAMP},
@@ -149,7 +149,7 @@
       content = #{content,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      udi = #{udi,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       read_time = #{readTime,jdbcType=TIMESTAMP},
       drop_time = #{dropTime,jdbcType=TIMESTAMP},

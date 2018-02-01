@@ -18,7 +18,7 @@ public class CyUserServiceImpl implements CyUserService{
     public void userList(Page<CyUserDto> page, CyUser cyUser) {
         int total = cyUserMapper.totalCount(cyUser);
         page.setTotal(total);
-        page.setRows(cyUserMapper.list(page.getOffset(),page.getLimit(),cyUser.getNickName(),cyUser.getUserType(),cyUser.getStatus()));
+        page.setRows(cyUserMapper.list(page.getOffset(),page.getLimit(),cyUser.getNickName(),cyUser.getUserType(),cyUser.getUserMobile()));
     }
 
     @Override

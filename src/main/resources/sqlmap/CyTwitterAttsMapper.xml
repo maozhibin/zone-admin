@@ -4,31 +4,27 @@
   <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="twitter_id" jdbcType="VARCHAR" property="twitterId" />
+    <result column="atts_name" jdbcType="VARCHAR" property="attsName" />
     <result column="atts_type" jdbcType="VARCHAR" property="attsType" />
+    <result column="atts_url" jdbcType="VARCHAR" property="attsUrl" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
-    <result column="atts_url" jdbcType="LONGVARCHAR" property="attsUrl" />
-  </resultMap>
   <sql id="Base_Column_List">
-    id, twitter_id, atts_type, created_time
+    id, twitter_id, atts_name, atts_type, atts_url, created_time
   </sql>
-  <sql id="Blob_Column_List">
-    atts_url
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from cy_twitter_atts
     where id = #{id,jdbcType=INTEGER}
   </select>
   <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
-    insert into cy_twitter_atts (id, twitter_id, atts_type, 
-      created_time, atts_url)
-    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{attsType,jdbcType=VARCHAR}, 
-      #{createdTime,jdbcType=TIMESTAMP}, #{attsUrl,jdbcType=LONGVARCHAR})
+    insert into cy_twitter_atts (id, twitter_id, atts_name, 
+      atts_type, atts_url, created_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{twitterId,jdbcType=VARCHAR}, #{attsName,jdbcType=VARCHAR}, 
+      #{attsType,jdbcType=VARCHAR}, #{attsUrl,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
     insert into cy_twitter_atts
@@ -39,14 +35,17 @@
       <if test="twitterId != null">
         twitter_id,
       </if>
+      <if test="attsName != null">
+        atts_name,
+      </if>
       <if test="attsType != null">
         atts_type,
       </if>
-      <if test="createdTime != null">
-        created_time,
-      </if>
       <if test="attsUrl != null">
         atts_url,
+      </if>
+      <if test="createdTime != null">
+        created_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -56,14 +55,17 @@
       <if test="twitterId != null">
         #{twitterId,jdbcType=VARCHAR},
       </if>
+      <if test="attsName != null">
+        #{attsName,jdbcType=VARCHAR},
+      </if>
       <if test="attsType != null">
         #{attsType,jdbcType=VARCHAR},
       </if>
+      <if test="attsUrl != null">
+        #{attsUrl,jdbcType=VARCHAR},
+      </if>
       <if test="createdTime != null">
         #{createdTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="attsUrl != null">
-        #{attsUrl,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -73,30 +75,27 @@
       <if test="twitterId != null">
         twitter_id = #{twitterId,jdbcType=VARCHAR},
       </if>
+      <if test="attsName != null">
+        atts_name = #{attsName,jdbcType=VARCHAR},
+      </if>
       <if test="attsType != null">
         atts_type = #{attsType,jdbcType=VARCHAR},
+      </if>
+      <if test="attsUrl != null">
+        atts_url = #{attsUrl,jdbcType=VARCHAR},
       </if>
       <if test="createdTime != null">
         created_time = #{createdTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="attsUrl != null">
-        atts_url = #{attsUrl,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
-    update cy_twitter_atts
-    set twitter_id = #{twitterId,jdbcType=VARCHAR},
-      atts_type = #{attsType,jdbcType=VARCHAR},
-      created_time = #{createdTime,jdbcType=TIMESTAMP},
-      atts_url = #{attsUrl,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cunyun.zoneadmin.dal.model.CyTwitterAtts">
     update cy_twitter_atts
     set twitter_id = #{twitterId,jdbcType=VARCHAR},
+      atts_name = #{attsName,jdbcType=VARCHAR},
       atts_type = #{attsType,jdbcType=VARCHAR},
+      atts_url = #{attsUrl,jdbcType=VARCHAR},
       created_time = #{createdTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

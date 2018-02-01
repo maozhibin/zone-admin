@@ -5,6 +5,8 @@ import java.util.Date;
 public class CyTwitterReply {
     private Integer id;
 
+    private String replyId;
+
     private String twitterId;
 
     private String uid;
@@ -27,6 +29,14 @@ public class CyTwitterReply {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getReplyId() {
+        return replyId;
+    }
+
+    public void setReplyId(String replyId) {
+        this.replyId = replyId;
     }
 
     public String getTwitterId() {
@@ -100,6 +110,7 @@ public class CyTwitterReply {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", replyId=").append(replyId);
         sb.append(", twitterId=").append(twitterId);
         sb.append(", uid=").append(uid);
         sb.append(", pid=").append(pid);

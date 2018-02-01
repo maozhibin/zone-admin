@@ -2,7 +2,6 @@ package com.cunyun.zoneadmin.dto;
 
 import lombok.Data;
 import java.util.Date;
-
 @Data
 public class CyUserDto {
     private Integer id;
@@ -35,6 +34,8 @@ public class CyUserDto {
 
     private Date createdTime;
 
+    private Date updateTime;
+
     private String status;
 
     private String statusValue;
@@ -60,5 +61,6 @@ public class CyUserDto {
     private Integer isRealMobile;
 
     private String cid;
+
 
 }

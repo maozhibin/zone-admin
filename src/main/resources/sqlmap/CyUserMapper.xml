@@ -84,8 +84,8 @@
     <if test="userType != null and userType != '' ">
       and y.user_type = #{userType,jdbcType=VARCHAR}
     </if>
-    <if test="status != null and status != '' ">
-      and y.status = #{status,jdbcType=VARCHAR}
+    <if test="userMobile != null and userMobile != '' ">
+      and y.user_mobile = #{userMobile,jdbcType=VARCHAR}
     </if>
   </sql>
 
@@ -107,6 +107,18 @@
     from cy_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+
+  <select id="selectByNickName" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from cy_user
+    where nick_name = #{nickName,jdbcType=VARCHAR}
+  </select>
+
+
   <insert id="insert" parameterType="com.cunyun.zoneadmin.dal.model.CyUser">
     insert into cy_user (id, uid, nick_name,
     user_avatar, user_sign, user_mobile,

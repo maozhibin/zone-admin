@@ -2,16 +2,14 @@ package com.cunyun.zoneadmin.dal.model;
 
 import java.util.Date;
 
-public class CyTwitterAtts {
+public class CyTwitterCollection {
     private Integer id;
 
     private String twitterId;
 
-    private String attsName;
+    private String uid;
 
-    private String attsType;
-
-    private String attsUrl;
+    private String status;
 
     private Date createdTime;
 
@@ -31,28 +29,20 @@ public class CyTwitterAtts {
         this.twitterId = twitterId;
     }
 
-    public String getAttsName() {
-        return attsName;
+    public String getUid() {
+        return uid;
     }
 
-    public void setAttsName(String attsName) {
-        this.attsName = attsName;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getAttsType() {
-        return attsType;
+    public String getStatus() {
+        return status;
     }
 
-    public void setAttsType(String attsType) {
-        this.attsType = attsType;
-    }
-
-    public String getAttsUrl() {
-        return attsUrl;
-    }
-
-    public void setAttsUrl(String attsUrl) {
-        this.attsUrl = attsUrl;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Date getCreatedTime() {
@@ -71,9 +61,8 @@ public class CyTwitterAtts {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", twitterId=").append(twitterId);
-        sb.append(", attsName=").append(attsName);
-        sb.append(", attsType=").append(attsType);
-        sb.append(", attsUrl=").append(attsUrl);
+        sb.append(", uid=").append(uid);
+        sb.append(", status=").append(status);
         sb.append(", createdTime=").append(createdTime);
         sb.append("]");
         return sb.toString();
