@@ -14,4 +14,6 @@ public interface CyUserService {
     void editUser(CyUser cyUser);
 
     void updateUserType(CyUser cyUser);
+
+    CyUserDto queryById(Integer id);
 }

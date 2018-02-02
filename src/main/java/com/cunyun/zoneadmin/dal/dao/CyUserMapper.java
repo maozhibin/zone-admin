@@ -21,7 +21,9 @@ public interface CyUserMapper {
 
     int totalCount(CyUser cyUser);
 
-    List<CyUserDto> list(@Param("begin") int offset, @Param("end")int limit, @Param("nickName")String nickName, @Param("userType") String userType,@Param("userMobile") String userMobile);
+    List<CyUserDto> list(@Param("begin") int offset, @Param("end")int limit, @Param("nickName")String nickName, @Param("userType") String userType,@Param("userMobile") String userMobile,@Param("status") String status);
 
     int updateByPrimaryKeySelective(CyUser cyUser);
+
+    CyUser queryById(Integer id);
 }

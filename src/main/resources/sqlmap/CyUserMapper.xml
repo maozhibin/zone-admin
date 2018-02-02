@@ -3,6 +3,8 @@
 <mapper namespace="com.cunyun.zoneadmin.dal.dao.CyUserMapper">
   <resultMap id="BaseResultMap" type="com.cunyun.zoneadmin.dal.model.CyUser">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="label_id" jdbcType="VARCHAR" property="labelId" />
+    <result column="black" jdbcType="INTEGER" property="black" />
     <result column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
@@ -24,6 +26,7 @@
     <result column="cy_score_balance" jdbcType="INTEGER" property="cyScoreBalance" />
     <result column="balance" jdbcType="INTEGER" property="balance" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cid_url" jdbcType="VARCHAR" property="cidUrl" />
     <result column="is_real_name" jdbcType="INTEGER" property="isRealName" />
     <result column="is_real_mobile" jdbcType="INTEGER" property="isRealMobile" />
   </resultMap>
@@ -43,6 +46,8 @@
   <select id="list" resultType="com.cunyun.zoneadmin.dto.CyUserDto">
     SELECT
     y.id,
+    y.black,
+    y.label_id labelId,
     y.uid,
     r.nick_name uidNickName,
     y.nick_name nickName,
@@ -67,6 +72,7 @@
     y.balance,
     y.NAME,
     y.cid,
+    y.cid_url cidUrl,
     y.is_real_name isRealName,
     y.is_real_mobile isRealMobile
     FROM
@@ -87,14 +93,17 @@
     <if test="userMobile != null and userMobile != '' ">
       and y.user_mobile = #{userMobile,jdbcType=VARCHAR}
     </if>
+    <if test="status != null and status != '' ">
+      and y.status = #{status,jdbcType=VARCHAR}
+    </if>
   </sql>
 
 
   <sql id="Base_Column_List">
-    id, uid, nick_name, user_avatar, user_sign, user_mobile, user_type, wc_user_name,
+    id, uid, label_id,nick_name, user_avatar, user_sign, user_mobile, user_type, wc_user_name,
     wc_nick_name, invite_uid, wc_qr_code, last_login_time, created_time, status, ali_user_name,
-    ali_nick_name, ali_userid, vip_level, cy_score_count, cy_score_balance, balance,
-    name, is_real_name, is_real_mobile
+    ali_nick_name, ali_userid, vip_level, cy_score_count, cy_score_balance, balance,black,
+    name, cid,cid_url,is_real_name, is_real_mobile
   </sql>
   <sql id="Blob_Column_List">
     cid
@@ -429,5 +438,15 @@
     is_real_mobile = #{isRealMobile,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <select id="queryById" resultMap="ResultMapWithBLOBs">
+    SELECT
+        *
+    FROM
+        cy_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
 
 </mapper>

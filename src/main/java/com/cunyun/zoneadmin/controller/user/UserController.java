@@ -72,5 +72,19 @@ public class UserController {
     }
 
 
+    /**
+     * 审核信息
+     */
+    @RequestMapping(value = "verifyInfo" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg verifyInfo(Integer id){
+        JsonResponseMsg result = new JsonResponseMsg();
+        if(id == null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+        }
+        CyUserDto cyUserDto = cyUserService.queryById(id);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
+    }
+
 
 }

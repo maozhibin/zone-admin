@@ -5,6 +5,62 @@ import java.util.Date;
 public class CyUser {
     private Integer id;
 
+    @Override
+    public String toString() {
+        return "CyUser{" +
+                "id=" + id +
+                ", black=" + black +
+                ", labelId='" + labelId + '\'' +
+                ", uid='" + uid + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", userAvatar='" + userAvatar + '\'' +
+                ", userSign='" + userSign + '\'' +
+                ", userMobile='" + userMobile + '\'' +
+                ", userType='" + userType + '\'' +
+                ", wcUserName='" + wcUserName + '\'' +
+                ", wcNickName='" + wcNickName + '\'' +
+                ", inviteUid='" + inviteUid + '\'' +
+                ", wcQrCode='" + wcQrCode + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", createdTime=" + createdTime +
+                ", status='" + status + '\'' +
+                ", aliUserName='" + aliUserName + '\'' +
+                ", aliNickName='" + aliNickName + '\'' +
+                ", aliUserid='" + aliUserid + '\'' +
+                ", vipLevel='" + vipLevel + '\'' +
+                ", cyScoreCount=" + cyScoreCount +
+                ", cyScoreBalance=" + cyScoreBalance +
+                ", balance=" + balance +
+                ", name='" + name + '\'' +
+                ", isRealName=" + isRealName +
+                ", isRealMobile=" + isRealMobile +
+                ", cid='" + cid + '\'' +
+                ", cidUrl='" + cidUrl + '\'' +
+                '}';
+    }
+
+    public void setBlack(Integer black) {
+        this.black = black;
+    }
+
+    public Integer getBlack() {
+
+        return black;
+    }
+
+    private Integer black;
+
+    public void setLabelId(String labelId) {
+        this.labelId = labelId;
+    }
+
+    public String getLabelId() {
+
+        return labelId;
+    }
+
+    private String labelId;
+
     private String uid;
 
     private String nickName;
@@ -52,6 +108,16 @@ public class CyUser {
     private Integer isRealMobile;
 
     private String cid;
+    private String cidUrl;
+
+    public void setCidUrl(String cidUrl) {
+        this.cidUrl = cidUrl;
+    }
+
+    public String getCidUrl() {
+
+        return cidUrl;
+    }
 
     public Integer getId() {
         return id;
@@ -253,38 +319,4 @@ public class CyUser {
         this.cid = cid;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", uid=").append(uid);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", userAvatar=").append(userAvatar);
-        sb.append(", userSign=").append(userSign);
-        sb.append(", userMobile=").append(userMobile);
-        sb.append(", userType=").append(userType);
-        sb.append(", wcUserName=").append(wcUserName);
-        sb.append(", wcNickName=").append(wcNickName);
-        sb.append(", inviteUid=").append(inviteUid);
-        sb.append(", wcQrCode=").append(wcQrCode);
-        sb.append(", lastLoginTime=").append(lastLoginTime);
-        sb.append(", createdTime=").append(createdTime);
-        sb.append(", status=").append(status);
-        sb.append(", aliUserName=").append(aliUserName);
-        sb.append(", aliNickName=").append(aliNickName);
-        sb.append(", aliUserid=").append(aliUserid);
-        sb.append(", vipLevel=").append(vipLevel);
-        sb.append(", cyScoreCount=").append(cyScoreCount);
-        sb.append(", cyScoreBalance=").append(cyScoreBalance);
-        sb.append(", balance=").append(balance);
-        sb.append(", name=").append(name);
-        sb.append(", isRealName=").append(isRealName);
-        sb.append(", isRealMobile=").append(isRealMobile);
-        sb.append(", cid=").append(cid);
-        sb.append("]");
-        return sb.toString();
-    }
 }

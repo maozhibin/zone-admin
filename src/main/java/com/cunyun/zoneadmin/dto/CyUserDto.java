@@ -8,6 +8,8 @@ public class CyUserDto {
 
     private String uid;
 
+    private String lableName;
+
     private String uidNickName;
 
     private String nickName;
@@ -62,5 +64,5 @@ public class CyUserDto {
 
     private String cid;
 
-
+    private String cidUrl;
 }

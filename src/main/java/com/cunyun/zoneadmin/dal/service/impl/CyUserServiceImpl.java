@@ -18,7 +18,7 @@ public class CyUserServiceImpl implements CyUserService{
     public void userList(Page<CyUserDto> page, CyUser cyUser) {
         int total = cyUserMapper.totalCount(cyUser);
         page.setTotal(total);
-        page.setRows(cyUserMapper.list(page.getOffset(),page.getLimit(),cyUser.getNickName(),cyUser.getUserType(),cyUser.getUserMobile()));
+        page.setRows(cyUserMapper.list(page.getOffset(),page.getLimit(),cyUser.getNickName(),cyUser.getUserType(),cyUser.getUserMobile(),cyUser.getStatus()));
     }
 
     @Override
@@ -39,5 +39,15 @@ public class CyUserServiceImpl implements CyUserService{
     @Override
     public void updateUserType(CyUser cyUser) {
         cyUserMapper.updateByPrimaryKeySelective(cyUser);
+    }
+
+    @Override
+    public CyUserDto queryById(Integer id) {
+       CyUser cyUser =  cyUserMapper.queryById(id);
+
+       CyUserDto cyUserDto = new CyUserDto();
+
+
+        return null;
     }
 }
