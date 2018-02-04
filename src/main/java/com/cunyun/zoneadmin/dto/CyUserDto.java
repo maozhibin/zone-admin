@@ -2,6 +2,8 @@ package com.cunyun.zoneadmin.dto;
 
 import lombok.Data;
 import java.util.Date;
+import java.util.List;
+
 public class CyUserDto {
     private Integer id;
 
@@ -9,9 +11,7 @@ public class CyUserDto {
 
     private String lableName;
 
-    private String lableId;
-
-    private String uidNickName;
+    private List<Integer> lableIdList;
 
     @Override
     public String toString() {
@@ -19,6 +19,7 @@ public class CyUserDto {
                 "id=" + id +
                 ", uid='" + uid + '\'' +
                 ", lableName='" + lableName + '\'' +
+                ", lableIdList=" + lableIdList +
                 ", lableId='" + lableId + '\'' +
                 ", uidNickName='" + uidNickName + '\'' +
                 ", nickName='" + nickName + '\'' +
@@ -51,6 +52,19 @@ public class CyUserDto {
                 ", cidUrl='" + cidUrl + '\'' +
                 '}';
     }
+
+    public void setLableIdList(List<Integer> lableIdList) {
+        this.lableIdList = lableIdList;
+    }
+
+    public List<Integer> getLableIdList() {
+
+        return lableIdList;
+    }
+
+    private String lableId;
+
+    private String uidNickName;
 
     public void setLableId(String lableId) {
         this.lableId = lableId;

@@ -8,6 +8,7 @@ import com.cunyun.zoneadmin.dto.CyUserDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class CyUserServiceImpl implements CyUserService{
@@ -71,7 +72,17 @@ public class CyUserServiceImpl implements CyUserService{
         CyUser cyUser = new CyUser();
         cyUser.setId(cyUserDto.getId());
         cyUser.setStatus(cyUserDto.getStatus());
-        cyUser.setLabelId(cyUserDto.getLableId());
+
+        List<Integer> lableIdList = cyUserDto.getLableIdList();
+        String str="";
+        for(int i=0;i<lableIdList.size();i++){
+            if(i==lableIdList.size()-1){
+                str += lableIdList.get(i);
+            }else{
+                str += lableIdList.get(i)+",";
+            }
+        }
+        cyUser.setLabelId(str);
         cyUserMapper.updateByPrimaryKeySelective(cyUser);
     }
 }

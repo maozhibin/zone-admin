@@ -317,6 +317,14 @@
       <if test="userAvatar != null">
         user_avatar = #{userAvatar,jdbcType=VARCHAR},
       </if>
+
+      <if test="userAvatar != null">
+        user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="labelId != null">
+        label_id = #{labelId,jdbcType=VARCHAR},
+      </if>
+
       <if test="userSign != null">
         user_sign = #{userSign,jdbcType=VARCHAR},
       </if>
