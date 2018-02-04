@@ -448,5 +448,13 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+  <select id="queryByUuid" resultMap="ResultMapWithBLOBs">
+    SELECT
+    *
+    FROM
+    cy_user
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+
 
 </mapper>

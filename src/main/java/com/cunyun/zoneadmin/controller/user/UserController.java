@@ -83,8 +83,22 @@ public class UserController {
             return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
         }
         CyUserDto cyUserDto = cyUserService.queryById(id);
-        return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
+        Map<String,Object> map = new HashMap<>();
+        map.put("user",cyUserDto);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"查询成功",map);
     }
 
-
+    /**
+     * 审核通过或者拒绝
+     */
+    @RequestMapping(value = "updateVerifyInfo" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg updateVerifyInfo(@RequestBody CyUserDto cyUserDto){
+        JsonResponseMsg result = new JsonResponseMsg();
+        if(cyUserDto.getId() == null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+        }
+        cyUserService.updateVerifyInfo(cyUserDto);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
+    }
 }

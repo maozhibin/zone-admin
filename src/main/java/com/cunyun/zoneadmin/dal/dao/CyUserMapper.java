@@ -26,4 +26,6 @@ public interface CyUserMapper {
     int updateByPrimaryKeySelective(CyUser cyUser);
 
     CyUser queryById(Integer id);
+
+    CyUser queryByUuid(@Param("uid") String uid);
 }

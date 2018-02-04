@@ -43,11 +43,35 @@ public class CyUserServiceImpl implements CyUserService{
 
     @Override
     public CyUserDto queryById(Integer id) {
-       CyUser cyUser =  cyUserMapper.queryById(id);
+        CyUser cyUser =  cyUserMapper.queryById(id);
+        CyUserDto cyUserDto = new CyUserDto();
+        cyUserDto.setId(cyUser.getId());
+        cyUserDto.setNickName(cyUser.getNickName());
+        cyUserDto.setCreatedTime(cyUser.getCreatedTime());
+        cyUserDto.setUserMobile(cyUser.getUserMobile());
 
-       CyUserDto cyUserDto = new CyUserDto();
+        //邀请人信息
+        CyUser inviteCyUser = cyUserMapper.queryByUuid(cyUser.getInviteUid());
+        if(inviteCyUser!=null){
+            cyUserDto.setInviteUid(cyUser.getInviteUid());
+            cyUserDto.setInviteNickName(inviteCyUser.getNickName());
+        }
+        cyUserDto.setUserSign(cyUser.getUserSign());
+        cyUserDto.setWcUserName(cyUser.getWcUserName());
+        cyUserDto.setStatus(cyUser.getStatus());
+        cyUserDto.setName(cyUser.getName());
+        cyUserDto.setCid(cyUser.getCid());
+        cyUserDto.setCidUrl(cyUser.getCidUrl());
+        cyUserDto.setLableId(cyUser.getLabelId());
+       return cyUserDto;
+    }
 
-
-        return null;
+    @Override
+    public void updateVerifyInfo(CyUserDto cyUserDto) {
+        CyUser cyUser = new CyUser();
+        cyUser.setId(cyUserDto.getId());
+        cyUser.setStatus(cyUserDto.getStatus());
+        cyUser.setLabelId(cyUserDto.getLableId());
+        cyUserMapper.updateByPrimaryKeySelective(cyUser);
     }
 }

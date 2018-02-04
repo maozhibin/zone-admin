@@ -16,4 +16,6 @@ public interface CyUserService {
     void updateUserType(CyUser cyUser);
 
     CyUserDto queryById(Integer id);
+
+    void updateVerifyInfo(CyUserDto cyUserDto);
 }
