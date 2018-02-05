@@ -11,7 +11,7 @@ public interface CyUserService {
 
     void addUser(CyUser cyUser);
 
-    void editUser(CyUser cyUser);
+    void editUser(CyUserDto cyUserDto);
 
     void updateUserType(CyUser cyUser);
 

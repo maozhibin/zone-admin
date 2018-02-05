@@ -4,6 +4,9 @@ import com.cunyun.zoneadmin.common.JsonResponseMsg;
 import com.cunyun.zoneadmin.dal.ext.Page;
 import com.cunyun.zoneadmin.dal.model.CyLabel;
 import com.cunyun.zoneadmin.dal.service.CyLabelService;
+import com.cunyun.zoneadmin.dto.CyLabelDto;
+import org.springframework.util.NumberUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.*;
@@ -21,7 +24,7 @@ public class CyLabelContoller {
     public JsonResponseMsg lableList(@RequestParam(defaultValue = "10", required = false) Integer limit,
                                     @RequestParam(defaultValue = "1", required = false) Integer offset, @RequestBody CyLabel cyLabel){
         JsonResponseMsg result = new JsonResponseMsg();
-        Page<CyLabel> page = new Page<>(limit, offset);
+        Page<CyLabelDto> page = new Page<>(limit, offset);
         cyLabelService.LableList(page,cyLabel);
         Map<String,Object> map = new HashMap<>();
         map.put("page",page);
@@ -77,7 +80,19 @@ public class CyLabelContoller {
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
     }
 
+    /**
+     * 删除
+     */
 
-
+    @RequestMapping(value = "delete" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg delete(@RequestBody CyLabel cyLabel){
+        JsonResponseMsg result = new JsonResponseMsg();
+        if(cyLabel.getId()==null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+        }
+        cyLabelService.delete(cyLabel.getId());
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"删除成功");
+    }
 
 }

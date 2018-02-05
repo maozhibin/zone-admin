@@ -28,4 +28,6 @@ public interface CyUserMapper {
     CyUser queryById(Integer id);
 
     CyUser queryByUuid(@Param("uid") String uid);
+
+    List<String> queryAllLableId();
 }

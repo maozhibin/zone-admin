@@ -49,12 +49,13 @@ public class UserController {
      */
     @RequestMapping(value = "editOrUpdateUser" ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponseMsg editOrUpdateUser(@RequestBody CyUser cyUser){
+    public JsonResponseMsg editOrUpdateUser(@RequestBody CyUserDto cyUserDto){
         JsonResponseMsg result = new JsonResponseMsg();
-        if(cyUser.getId()==null){
-            cyUserService.addUser(cyUser);
+        if(cyUserDto.getId()==null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+//            cyUserService.addUser(cyUser);
         }else{
-            cyUserService.editUser(cyUser);
+            cyUserService.editUser(cyUserDto);
         }
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
     }

@@ -89,8 +89,23 @@ public class CyUserServiceImpl implements CyUserService{
     }
 
     @Override
-    public void editUser(CyUser cyUser) {
-        cyUserMapper.updateByPrimaryKeyWithBLOBs(cyUser);
+    public void editUser(CyUserDto cyUserDto) {
+        List<Integer> lableIdList = cyUserDto.getLableIdList();
+        String str="";
+        if(lableIdList!=null){
+            for(int i=0;i<lableIdList.size();i++){
+                if(i==lableIdList.size()-1){
+                    str += lableIdList.get(i);
+                }else{
+                    str += lableIdList.get(i)+",";
+                }
+            }
+        }
+        CyUser cyUser = new CyUser();
+        cyUser.setLabelId(str);
+        cyUser.setId(cyUserDto.getId());
+        cyUser.setBlack(cyUserDto.getBlack());
+        cyUserMapper.updateByPrimaryKeySelective(cyUser);
     }
 
     @Override

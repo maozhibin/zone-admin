@@ -70,22 +70,14 @@
         COUNT(1) count
     FROM
     cy_label
-    WHERE 1=1
-    <if test=" labelName!= null and labelName!='' ">
-     AND  label_name = #{labelName,jdbcType=INTEGER},
-    </if>
-
   </select>
-  <select id="list" resultMap="BaseResultMap">
+  <select id="list" resultType="com.cunyun.zoneadmin.dto.CyLabelDto">
     SELECT
-      *
+      id,
+      label_name labelName
     FROM
       cy_label
-    WHERE 1=1
-    <if test=" labelName!= null and labelName!='' ">
-      AND  label_name = #{labelName,jdbcType=INTEGER},
-    </if>
-    IMIT #{begin},#{end}
+    limit #{begin},#{end}
   </select>
 
   <select id="lableById" resultMap="BaseResultMap">
@@ -110,4 +102,9 @@
     </if>
   </select>
 
+  <delete id="delete">
+    DELETE
+      FROM
+	cy_label WHERE id=#{id}
+  </delete>
 </mapper>

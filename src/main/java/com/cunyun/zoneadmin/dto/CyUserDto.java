@@ -9,6 +9,64 @@ public class CyUserDto {
 
     private String uid;
 
+    private Integer black;
+
+    @Override
+    public String toString() {
+        return "CyUserDto{" +
+                "id=" + id +
+                ", uid='" + uid + '\'' +
+                ", black=" + black +
+                ", lableName='" + lableName + '\'' +
+                ", begin=" + begin +
+                ", end=" + end +
+                ", lableIdList=" + lableIdList +
+                ", lableId='" + lableId + '\'' +
+                ", uidNickName='" + uidNickName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", userAvatar='" + userAvatar + '\'' +
+                ", userSign='" + userSign + '\'' +
+                ", userMobile='" + userMobile + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userTypeValue='" + userTypeValue + '\'' +
+                ", wcUserName='" + wcUserName + '\'' +
+                ", wcNickName='" + wcNickName + '\'' +
+                ", inviteUid='" + inviteUid + '\'' +
+                ", inviteNickName='" + inviteNickName + '\'' +
+                ", wcQrCode='" + wcQrCode + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", createdTime=" + createdTime +
+                ", updateTime=" + updateTime +
+                ", endTimeStr='" + endTimeStr + '\'' +
+                ", startTimeStr='" + startTimeStr + '\'' +
+                ", endTime=" + endTime +
+                ", startTime=" + startTime +
+                ", status='" + status + '\'' +
+                ", statusValue='" + statusValue + '\'' +
+                ", aliUserName='" + aliUserName + '\'' +
+                ", aliNickName='" + aliNickName + '\'' +
+                ", aliUserid='" + aliUserid + '\'' +
+                ", vipLevel='" + vipLevel + '\'' +
+                ", cyScoreCount=" + cyScoreCount +
+                ", cyScoreBalance=" + cyScoreBalance +
+                ", balance=" + balance +
+                ", name='" + name + '\'' +
+                ", isRealName=" + isRealName +
+                ", isRealMobile=" + isRealMobile +
+                ", cid='" + cid + '\'' +
+                ", cidUrl='" + cidUrl + '\'' +
+                '}';
+    }
+
+    public void setBlack(Integer black) {
+        this.black = black;
+    }
+
+    public Integer getBlack() {
+
+        return black;
+    }
+
     private String lableName;
 
     private Integer begin;
@@ -94,52 +152,6 @@ public class CyUserDto {
 
 
     private String endTimeStr;
-
-    @Override
-    public String toString() {
-        return "CyUserDto{" +
-                "id=" + id +
-                ", uid='" + uid + '\'' +
-                ", lableName='" + lableName + '\'' +
-                ", begin=" + begin +
-                ", end=" + end +
-                ", lableIdList=" + lableIdList +
-                ", lableId='" + lableId + '\'' +
-                ", uidNickName='" + uidNickName + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", userAvatar='" + userAvatar + '\'' +
-                ", userSign='" + userSign + '\'' +
-                ", userMobile='" + userMobile + '\'' +
-                ", userType='" + userType + '\'' +
-                ", userTypeValue='" + userTypeValue + '\'' +
-                ", wcUserName='" + wcUserName + '\'' +
-                ", wcNickName='" + wcNickName + '\'' +
-                ", inviteUid='" + inviteUid + '\'' +
-                ", inviteNickName='" + inviteNickName + '\'' +
-                ", wcQrCode='" + wcQrCode + '\'' +
-                ", lastLoginTime=" + lastLoginTime +
-                ", createdTime=" + createdTime +
-                ", updateTime=" + updateTime +
-                ", endTimeStr='" + endTimeStr + '\'' +
-                ", startTimeStr='" + startTimeStr + '\'' +
-                ", endTime=" + endTime +
-                ", startTime=" + startTime +
-                ", status='" + status + '\'' +
-                ", statusValue='" + statusValue + '\'' +
-                ", aliUserName='" + aliUserName + '\'' +
-                ", aliNickName='" + aliNickName + '\'' +
-                ", aliUserid='" + aliUserid + '\'' +
-                ", vipLevel='" + vipLevel + '\'' +
-                ", cyScoreCount=" + cyScoreCount +
-                ", cyScoreBalance=" + cyScoreBalance +
-                ", balance=" + balance +
-                ", name='" + name + '\'' +
-                ", isRealName=" + isRealName +
-                ", isRealMobile=" + isRealMobile +
-                ", cid='" + cid + '\'' +
-                ", cidUrl='" + cidUrl + '\'' +
-                '}';
-    }
 
     public void setEndTimeStr(String endTimeStr) {
         this.endTimeStr = endTimeStr;

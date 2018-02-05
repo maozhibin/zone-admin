@@ -1,9 +1,11 @@
 package com.cunyun.zoneadmin.dal.service.impl;
 
 import com.cunyun.zoneadmin.dal.dao.CyLabelMapper;
+import com.cunyun.zoneadmin.dal.dao.CyUserMapper;
 import com.cunyun.zoneadmin.dal.ext.Page;
 import com.cunyun.zoneadmin.dal.model.CyLabel;
 import com.cunyun.zoneadmin.dal.service.CyLabelService;
+import com.cunyun.zoneadmin.dto.CyLabelDto;
 import com.cunyun.zoneadmin.dto.CyUserDto;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,30 @@ public class CyLabelServiceImpl implements CyLabelService {
     @Resource
     private CyLabelMapper cyLabelMapper;
 
+    @Resource
+    private CyUserMapper cyUserMapper;
+
     @Override
-    public void LableList(Page<CyLabel> page, CyLabel cyLabel) {
+    public void LableList(Page<CyLabelDto> page, CyLabel cyLabel) {
         int total = cyLabelMapper.totalCount(cyLabel);
         page.setTotal(total);
-        page.setRows(cyLabelMapper.list(page.getOffset(),page.getLimit(),cyLabel.getLabelName()));
+        List<CyLabelDto> lists = cyLabelMapper.list(page.getOffset(),page.getLimit());
+        List<String> lableIds = cyUserMapper.queryAllLableId();
+        //查询关联用户标签的数量
+        for (CyLabelDto list:lists) {
+            int num=0;
+            for (String lableId:lableIds) {
+                String arr []  = lableId.split(",");
+                for (int i=0;i<arr.length;i++){
+                    if(Integer.parseInt(arr[i])==(list.getId())){
+                        num++;
+                    }
+                }
+            }
+            list.setUserNum(num);
+        }
+
+        page.setRows(lists);
 
     }
 
@@ -42,6 +63,11 @@ public class CyLabelServiceImpl implements CyLabelService {
     @Override
     public List<CyLabel> lableCount(CyLabel cyLabel) {
         return cyLabelMapper.lableCount(cyLabel);
+    }
+
+    @Override
+    public Integer delete(int id) {
+        return cyLabelMapper.delete(id);
     }
 
 
