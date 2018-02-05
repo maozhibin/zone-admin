@@ -30,4 +30,8 @@ public interface CyUserMapper {
     CyUser queryByUuid(@Param("uid") String uid);
 
     List<String> queryAllLableId();
+
+    int blackTotalCount(CyUserDto cyUserDto);
+
+    List<CyUserDto> blackList(CyUserDto cyUserDto);
 }

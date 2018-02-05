@@ -23,7 +23,7 @@ public class UserController {
      */
     @RequestMapping(value = "userList" ,method = RequestMethod.POST)
     @ResponseBody
-    public JsonResponseMsg areaList(@RequestParam(defaultValue = "10", required = false) Integer limit,
+    public JsonResponseMsg userList(@RequestParam(defaultValue = "10", required = false) Integer limit,
                                     @RequestParam(defaultValue = "1", required = false) Integer offset, @RequestBody CyUserDto cyUserDto){
         JsonResponseMsg result = new JsonResponseMsg();
         Page<CyUserDto> page = new Page<>(limit, offset);
@@ -102,4 +102,20 @@ public class UserController {
         cyUserService.updateVerifyInfo(cyUserDto);
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"修改成功");
     }
+
+    /**
+     * 黑名单列表
+     */
+    @RequestMapping(value = "blackList" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg blackList(@RequestParam(defaultValue = "10", required = false) Integer limit,
+                                    @RequestParam(defaultValue = "1", required = false) Integer offset, @RequestBody CyUserDto cyUserDto){
+        JsonResponseMsg result = new JsonResponseMsg();
+        Page<CyUserDto> page = new Page<>(limit, offset);
+        cyUserService.blackList(page,cyUserDto);
+        Map<String,Object> map = new HashMap<>();
+        map.put("page",page);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"查出成功",map);
+    }
+
 }

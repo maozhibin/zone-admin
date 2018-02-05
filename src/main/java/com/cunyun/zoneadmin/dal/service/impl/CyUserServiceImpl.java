@@ -156,4 +156,14 @@ public class CyUserServiceImpl implements CyUserService{
         cyUser.setLabelId(str);
         cyUserMapper.updateByPrimaryKeySelective(cyUser);
     }
+
+    @Override
+    public void blackList(Page<CyUserDto> page, CyUserDto cyUserDto) {
+        cyUserDto.setBegin(page.getOffset());
+        cyUserDto.setEnd(page.getLimit());
+        int total = cyUserMapper.blackTotalCount(cyUserDto);
+        page.setTotal(total);
+        List<CyUserDto> lists = cyUserMapper.blackList(cyUserDto);
+        page.setRows(lists);
+    }
 }

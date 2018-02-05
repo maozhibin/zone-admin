@@ -43,6 +43,40 @@
     <include refid="query_user_where"></include>
   </select>
 
+
+  <select id="blackTotalCount" resultType="int">
+    SELECT
+    COUNT(1) count
+    FROM
+    cy_user y
+    WHERE 1=1
+    <if test="nickName != null and nickName != '' ">
+      and y.nick_name = #{nickName,jdbcType=VARCHAR}
+    </if>
+
+    <if test="userMobile != null and userMobile != '' ">
+      and y.user_mobile = #{userMobile,jdbcType=VARCHAR}
+    </if>
+    and y.black =1
+  </select>
+
+  <select id="blackList" resultType="com.cunyun.zoneadmin.dto.CyUserDto">
+    SELECT
+      y.id,
+      y.nick_name nickName,
+      y.user_mobile userMobile
+      FROM
+      cy_user y
+    WHERE 1=1
+      <if test="nickName != null and nickName != '' ">
+        and y.nick_name = #{nickName,jdbcType=VARCHAR}
+      </if>
+      <if test="userMobile != null and userMobile != '' ">
+        and y.user_mobile = #{userMobile,jdbcType=VARCHAR}
+      </if>
+      and y.black =1
+  </select>
+
   <select id="list" resultType="com.cunyun.zoneadmin.dto.CyUserDto">
     SELECT
     y.id,

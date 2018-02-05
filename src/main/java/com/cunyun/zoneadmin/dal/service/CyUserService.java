@@ -18,4 +18,6 @@ public interface CyUserService {
     CyUserDto queryById(Integer id);
 
     void updateVerifyInfo(CyUserDto cyUserDto);
+
+    void blackList(Page<CyUserDto> page, CyUserDto cyUserDto);
 }
