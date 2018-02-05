@@ -22,5 +22,7 @@ public interface CyTwitterMapper {
 
     int totalCount(CyTwitterDto cyTwitterDto);
 
-    List<CyTwitterDto> queryByKeyWords(@Param("begin") int offset, @Param("end")int limit, @Param("createdTime")Date createdTime, @Param("uid")String uid, @Param("title")String title,@Param("twitterType")String twitterType);
+    List<CyTwitterDto> queryByKeyWords(CyTwitterDto cyTwitterDto);
+
+//    List<CyTwitterDto> queryByKeyWords(@Param("begin") int offset, @Param("end")int limit, @Param("createdTime")Date createdTime, @Param("uid")String uid, @Param("title")String title,@Param("twitterType")String twitterType);
 }

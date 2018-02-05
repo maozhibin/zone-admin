@@ -47,7 +47,7 @@
     SELECT
     y.id,
     y.black,
-    y.label_id labelId,
+    y.label_id lableId,
     y.uid,
     r.nick_name uidNickName,
     y.nick_name nickName,
@@ -96,8 +96,18 @@
     <if test="status != null and status != '' ">
       and y.status = #{status,jdbcType=VARCHAR}
     </if>
-  </sql>
+    <if test="lableId != null and lableId != '' ">
+      and y.label_id = #{lableId,jdbcType=VARCHAR}
+    </if>
 
+    <if test="endTime != null">
+      and y.created_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="startTime != null">
+      and y.created_time <![CDATA[ >= ]]> #{startTime,jdbcType=TIMESTAMP}
+    </if>
+    and y.black =0
+  </sql>
 
   <sql id="Base_Column_List">
     id, uid, label_id,nick_name, user_avatar, user_sign, user_mobile, user_type, wc_user_name,
@@ -118,7 +128,7 @@
   </select>
 
 
-  <select id="selectByNickName" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByNickName" resultMap="ResultMapWithBLOBs">
     select
     <include refid="Base_Column_List" />
     ,

@@ -24,10 +24,10 @@ public class UserController {
     @RequestMapping(value = "userList" ,method = RequestMethod.POST)
     @ResponseBody
     public JsonResponseMsg areaList(@RequestParam(defaultValue = "10", required = false) Integer limit,
-                                    @RequestParam(defaultValue = "1", required = false) Integer offset, @RequestBody CyUser cyUser){
+                                    @RequestParam(defaultValue = "1", required = false) Integer offset, @RequestBody CyUserDto cyUserDto){
         JsonResponseMsg result = new JsonResponseMsg();
         Page<CyUserDto> page = new Page<>(limit, offset);
-        cyUserService.userList(page,cyUser);
+        cyUserService.userList(page,cyUserDto);
         Map<String,Object> map = new HashMap<>();
         map.put("page",page);
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"查出成功",map);

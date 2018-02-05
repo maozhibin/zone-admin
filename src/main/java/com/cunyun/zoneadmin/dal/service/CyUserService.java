@@ -5,7 +5,7 @@ import com.cunyun.zoneadmin.dal.model.CyUser;
 import com.cunyun.zoneadmin.dto.CyUserDto;
 
 public interface CyUserService {
-    void userList(Page<CyUserDto> page, CyUser cyUser);
+    void userList(Page<CyUserDto> page, CyUserDto cyUserDto);
 
     void updateSattus(CyUser cyUser);
 

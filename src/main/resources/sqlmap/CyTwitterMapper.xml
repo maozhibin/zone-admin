@@ -273,8 +273,11 @@
     <if test="title != null and title != '' ">
       and title = #{title,jdbcType=VARCHAR}
     </if>
-    <if test="createdTime != null and createdTime != '' ">
-      and created_time = #{createdTime,jdbcType=TIMESTAMP}
+    <if test="endTimeDate != null">
+      and created_time <![CDATA[ <= ]]> #{endTimeDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="statrTimeDate != null">
+      and created_time <![CDATA[ >= ]]> #{statrTimeDate,jdbcType=TIMESTAMP}
     </if>
     <if test="twitterType != null and twitterType != '' ">
       and twitter_type = #{twitterType,jdbcType=VARCHAR}
@@ -290,7 +293,7 @@
     <include refid="query_teiter_where"></include>
   </select>
 
-  <select id="queryByKeyWords" resultMap="BaseResultMap" parameterType="com.cunyun.zoneadmin.dto.CyTwitterDto">
+  <select id="queryByKeyWords" resultType="com.cunyun.zoneadmin.dto.CyTwitterDto" parameterType="com.cunyun.zoneadmin.dto.CyTwitterDto">
     SELECT
       *
     FROM

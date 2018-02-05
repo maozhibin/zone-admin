@@ -19,9 +19,9 @@ public interface CyUserMapper {
 
     int updateByPrimaryKey(CyUser record);
 
-    int totalCount(CyUser cyUser);
+    int totalCount(CyUserDto cyUser);
 
-    List<CyUserDto> list(@Param("begin") int offset, @Param("end")int limit, @Param("nickName")String nickName, @Param("userType") String userType,@Param("userMobile") String userMobile,@Param("status") String status);
+    List<CyUserDto> list(CyUserDto cyUserDto);
 
     int updateByPrimaryKeySelective(CyUser cyUser);
 

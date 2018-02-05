@@ -6,6 +6,27 @@ import java.util.Date;
 public class CyTwitterDto {
     private Integer id;
 
+    private Integer begin;
+
+    private Integer end;
+
+    public void setBegin(Integer begin) {
+        this.begin = begin;
+    }
+
+    public void setEnd(Integer end) {
+        this.end = end;
+    }
+
+    public Integer getBegin() {
+
+        return begin;
+    }
+
+    public Integer getEnd() {
+        return end;
+    }
+
     private String twitterId;
 
     private String nickName;
@@ -23,6 +44,80 @@ public class CyTwitterDto {
     private String hasAtts;
 
     private Date createdTime;
+
+    private String endTime;
+
+    private String statrTime;
+
+    private Date endTimeDate;
+
+    @Override
+    public String toString() {
+        return "CyTwitterDto{" +
+                "id=" + id +
+                ", begin=" + begin +
+                ", end=" + end +
+                ", twitterId='" + twitterId + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", uid='" + uid + '\'' +
+                ", title='" + title + '\'' +
+                ", twitterType='" + twitterType + '\'' +
+                ", readRule='" + readRule + '\'' +
+                ", replyRule='" + replyRule + '\'' +
+                ", hasAtts='" + hasAtts + '\'' +
+                ", createdTime=" + createdTime +
+                ", endTime='" + endTime + '\'' +
+                ", statrTime='" + statrTime + '\'' +
+                ", endTimeDate=" + endTimeDate +
+                ", statrTimeDate=" + statrTimeDate +
+                ", topicClass='" + topicClass + '\'' +
+                ", voteCanAddOption=" + voteCanAddOption +
+                ", voteMultipleChoice=" + voteMultipleChoice +
+                ", pushStatus=" + pushStatus +
+                ", icon='" + icon + '\'' +
+                ", idx=" + idx +
+                ", content='" + content + '\'' +
+                ", showContent='" + showContent + '\'' +
+                ", fromUrl='" + fromUrl + '\'' +
+                '}';
+    }
+
+    public void setEndTimeDate(Date endTimeDate) {
+        this.endTimeDate = endTimeDate;
+    }
+
+    public void setStatrTimeDate(Date statrTimeDate) {
+        this.statrTimeDate = statrTimeDate;
+    }
+
+    public Date getEndTimeDate() {
+
+        return endTimeDate;
+    }
+
+    public Date getStatrTimeDate() {
+        return statrTimeDate;
+    }
+
+
+    private Date statrTimeDate;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStatrTime(String statrTime) {
+        this.statrTime = statrTime;
+    }
+
+    public String getStatrTime() {
+
+        return statrTime;
+    }
+
+    public String getEndTime() {
+
+        return endTime;
+    }
 
     private String topicClass;
 
@@ -60,31 +155,6 @@ public class CyTwitterDto {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    @Override
-    public String toString() {
-        return "CyTwitterDto{" +
-                "id=" + id +
-                ", twitterId='" + twitterId + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", uid='" + uid + '\'' +
-                ", title='" + title + '\'' +
-                ", twitterType='" + twitterType + '\'' +
-                ", readRule='" + readRule + '\'' +
-                ", replyRule='" + replyRule + '\'' +
-                ", hasAtts='" + hasAtts + '\'' +
-                ", createdTime=" + createdTime +
-                ", topicClass='" + topicClass + '\'' +
-                ", voteCanAddOption=" + voteCanAddOption +
-                ", voteMultipleChoice=" + voteMultipleChoice +
-                ", pushStatus=" + pushStatus +
-                ", icon='" + icon + '\'' +
-                ", idx=" + idx +
-                ", content='" + content + '\'' +
-                ", showContent='" + showContent + '\'' +
-                ", fromUrl='" + fromUrl + '\'' +
-                '}';
     }
 
     public void setTwitterType(String twitterType) {

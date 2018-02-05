@@ -2,24 +2,80 @@ package com.cunyun.zoneadmin.dal.service.impl;
 
 import com.cunyun.zoneadmin.dal.dao.CyUserMapper;
 import com.cunyun.zoneadmin.dal.ext.Page;
+import com.cunyun.zoneadmin.dal.model.CyLabel;
 import com.cunyun.zoneadmin.dal.model.CyUser;
+import com.cunyun.zoneadmin.dal.service.CyLabelService;
 import com.cunyun.zoneadmin.dal.service.CyUserService;
 import com.cunyun.zoneadmin.dto.CyUserDto;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class CyUserServiceImpl implements CyUserService{
     @Resource
     private CyUserMapper cyUserMapper;
-
+    @Resource
+    private CyLabelService cyLabelService;
     @Override
-    public void userList(Page<CyUserDto> page, CyUser cyUser) {
-        int total = cyUserMapper.totalCount(cyUser);
+    public void userList(Page<CyUserDto> page, CyUserDto cyUserDto) {
+
+        cyUserDto.setBegin(page.getOffset());
+        cyUserDto.setEnd(page.getLimit());
+        SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+        Date endTime = null;
+        Date startTime = null;
+        try {
+            if(cyUserDto.getEndTimeStr()!=null && cyUserDto.getStartTimeStr()!=null){
+                endTime = sdf.parse(cyUserDto.getEndTimeStr());
+                startTime = sdf.parse(cyUserDto.getStartTimeStr());
+                cyUserDto.setEndTime(endTime);
+                cyUserDto.setStartTime(startTime);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        List<Integer> lableIdLists = cyUserDto.getLableIdList();
+        String lableIdStr="";
+        if(lableIdLists!=null){
+            for (int i=0;i<lableIdLists.size();i++) {
+                if(i==lableIdLists.size()-1){
+                    lableIdStr += lableIdLists.get(i);
+                }else{
+                    lableIdStr += lableIdLists.get(i)+",";
+                }
+            }
+            cyUserDto.setLableId(lableIdStr);
+        }
+
+        int total = cyUserMapper.totalCount(cyUserDto);
         page.setTotal(total);
-        page.setRows(cyUserMapper.list(page.getOffset(),page.getLimit(),cyUser.getNickName(),cyUser.getUserType(),cyUser.getUserMobile(),cyUser.getStatus()));
+        List<CyUserDto> lists = cyUserMapper.list(cyUserDto);
+        for (CyUserDto list:lists) {
+            List<Integer> lableIds = new ArrayList<>();
+            String lableId = list.getLableId();
+            String arrs[] = lableId.split(",");
+            for (String arr:arrs) {
+                lableIds.add(Integer.parseInt(arr));
+            }
+            List<CyLabel> CyLabels = cyLabelService.lableById(lableIds);
+            String str="";
+            for(int i=0;i<CyLabels.size();i++){
+                if(i==CyLabels.size()-1){
+                    str += CyLabels.get(i).getLabelName();
+                }else{
+                    str += CyLabels.get(i).getLabelName()+",";
+                }
+            }
+            list.setLableName(str);
+        }
+        page.setRows(lists);
     }
 
     @Override

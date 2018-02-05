@@ -11,47 +11,28 @@ public class CyUserDto {
 
     private String lableName;
 
-    private List<Integer> lableIdList;
+    private Integer begin;
 
-    @Override
-    public String toString() {
-        return "CyUserDto{" +
-                "id=" + id +
-                ", uid='" + uid + '\'' +
-                ", lableName='" + lableName + '\'' +
-                ", lableIdList=" + lableIdList +
-                ", lableId='" + lableId + '\'' +
-                ", uidNickName='" + uidNickName + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", userAvatar='" + userAvatar + '\'' +
-                ", userSign='" + userSign + '\'' +
-                ", userMobile='" + userMobile + '\'' +
-                ", userType='" + userType + '\'' +
-                ", userTypeValue='" + userTypeValue + '\'' +
-                ", wcUserName='" + wcUserName + '\'' +
-                ", wcNickName='" + wcNickName + '\'' +
-                ", inviteUid='" + inviteUid + '\'' +
-                ", inviteNickName='" + inviteNickName + '\'' +
-                ", wcQrCode='" + wcQrCode + '\'' +
-                ", lastLoginTime=" + lastLoginTime +
-                ", createdTime=" + createdTime +
-                ", updateTime=" + updateTime +
-                ", status='" + status + '\'' +
-                ", statusValue='" + statusValue + '\'' +
-                ", aliUserName='" + aliUserName + '\'' +
-                ", aliNickName='" + aliNickName + '\'' +
-                ", aliUserid='" + aliUserid + '\'' +
-                ", vipLevel='" + vipLevel + '\'' +
-                ", cyScoreCount=" + cyScoreCount +
-                ", cyScoreBalance=" + cyScoreBalance +
-                ", balance=" + balance +
-                ", name='" + name + '\'' +
-                ", isRealName=" + isRealName +
-                ", isRealMobile=" + isRealMobile +
-                ", cid='" + cid + '\'' +
-                ", cidUrl='" + cidUrl + '\'' +
-                '}';
+    private Integer end;
+
+    public void setBegin(Integer begin) {
+        this.begin = begin;
     }
+
+    public void setEnd(Integer end) {
+        this.end = end;
+    }
+
+    public Integer getBegin() {
+
+        return begin;
+    }
+
+    public Integer getEnd() {
+        return end;
+    }
+
+    private List<Integer> lableIdList;
 
     public void setLableIdList(List<Integer> lableIdList) {
         this.lableIdList = lableIdList;
@@ -110,6 +91,95 @@ public class CyUserDto {
     private Date createdTime;
 
     private Date updateTime;
+
+
+    private String endTimeStr;
+
+    @Override
+    public String toString() {
+        return "CyUserDto{" +
+                "id=" + id +
+                ", uid='" + uid + '\'' +
+                ", lableName='" + lableName + '\'' +
+                ", begin=" + begin +
+                ", end=" + end +
+                ", lableIdList=" + lableIdList +
+                ", lableId='" + lableId + '\'' +
+                ", uidNickName='" + uidNickName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", userAvatar='" + userAvatar + '\'' +
+                ", userSign='" + userSign + '\'' +
+                ", userMobile='" + userMobile + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userTypeValue='" + userTypeValue + '\'' +
+                ", wcUserName='" + wcUserName + '\'' +
+                ", wcNickName='" + wcNickName + '\'' +
+                ", inviteUid='" + inviteUid + '\'' +
+                ", inviteNickName='" + inviteNickName + '\'' +
+                ", wcQrCode='" + wcQrCode + '\'' +
+                ", lastLoginTime=" + lastLoginTime +
+                ", createdTime=" + createdTime +
+                ", updateTime=" + updateTime +
+                ", endTimeStr='" + endTimeStr + '\'' +
+                ", startTimeStr='" + startTimeStr + '\'' +
+                ", endTime=" + endTime +
+                ", startTime=" + startTime +
+                ", status='" + status + '\'' +
+                ", statusValue='" + statusValue + '\'' +
+                ", aliUserName='" + aliUserName + '\'' +
+                ", aliNickName='" + aliNickName + '\'' +
+                ", aliUserid='" + aliUserid + '\'' +
+                ", vipLevel='" + vipLevel + '\'' +
+                ", cyScoreCount=" + cyScoreCount +
+                ", cyScoreBalance=" + cyScoreBalance +
+                ", balance=" + balance +
+                ", name='" + name + '\'' +
+                ", isRealName=" + isRealName +
+                ", isRealMobile=" + isRealMobile +
+                ", cid='" + cid + '\'' +
+                ", cidUrl='" + cidUrl + '\'' +
+                '}';
+    }
+
+    public void setEndTimeStr(String endTimeStr) {
+        this.endTimeStr = endTimeStr;
+    }
+
+    public void setStartTimeStr(String startTimeStr) {
+        this.startTimeStr = startTimeStr;
+    }
+
+    public String getEndTimeStr() {
+
+        return endTimeStr;
+    }
+
+    public String getStartTimeStr() {
+        return startTimeStr;
+    }
+
+    private String startTimeStr;
+
+    private Date endTime;
+
+    private Date startTime;
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+
+        return endTime;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
 
     private String status;
 
