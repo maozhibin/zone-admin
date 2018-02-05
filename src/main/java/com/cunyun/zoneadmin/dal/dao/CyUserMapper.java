@@ -34,4 +34,9 @@ public interface CyUserMapper {
     int blackTotalCount(CyUserDto cyUserDto);
 
     List<CyUserDto> blackList(CyUserDto cyUserDto);
+
+    Integer queryByIniviteUid(@Param("inviteUid")String inviteUid);
+
+
+    List<CyUserDto> queryIniviteUidUser(CyUserDto cyUserDto);
 }

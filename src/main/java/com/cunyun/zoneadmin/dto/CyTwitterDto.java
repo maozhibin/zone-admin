@@ -1,7 +1,5 @@
 package com.cunyun.zoneadmin.dto;
 
-import lombok.Data;
-
 import java.util.Date;
 public class CyTwitterDto {
     private Integer id;

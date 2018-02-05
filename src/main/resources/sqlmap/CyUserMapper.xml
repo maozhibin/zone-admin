@@ -133,7 +133,9 @@
     <if test="lableId != null and lableId != '' ">
       and y.label_id = #{lableId,jdbcType=VARCHAR}
     </if>
-
+    <if test="uid != null and uid != '' ">
+      and y.uid = #{uid,jdbcType=VARCHAR}
+    </if>
     <if test="endTime != null">
       and y.created_time <![CDATA[ <= ]]> #{endTime,jdbcType=TIMESTAMP}
     </if>
@@ -517,5 +519,24 @@
     FROM
         cy_user
   </select>
+
+  <select id="queryByIniviteUid" resultType="int">
+    SELECT
+        COUNT(1)
+    FROM
+        cy_user
+    WHERE invite_uid=#{inviteUid,jdbcType=INTEGER}
+  </select>
+
+  <select id="queryIniviteUidUser" resultType="com.cunyun.zoneadmin.dto.CyUserDto">
+    SELECT
+       id,
+       nick_name nickName,
+       created_time createdTime
+    FROM
+        cy_user
+    WHERE invite_uid=#{inviteUid,jdbcType=INTEGER}
+  </select>
+
 
 </mapper>

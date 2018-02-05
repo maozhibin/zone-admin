@@ -11,12 +11,15 @@ public class CyUserDto {
 
     private Integer black;
 
+    private Integer iniviteCount;
+
     @Override
     public String toString() {
         return "CyUserDto{" +
                 "id=" + id +
                 ", uid='" + uid + '\'' +
                 ", black=" + black +
+                ", iniviteCount=" + iniviteCount +
                 ", lableName='" + lableName + '\'' +
                 ", begin=" + begin +
                 ", end=" + end +
@@ -56,6 +59,15 @@ public class CyUserDto {
                 ", cid='" + cid + '\'' +
                 ", cidUrl='" + cidUrl + '\'' +
                 '}';
+    }
+
+    public void setIniviteCount(Integer iniviteCount) {
+        this.iniviteCount = iniviteCount;
+    }
+
+    public Integer getIniviteCount() {
+
+        return iniviteCount;
     }
 
     public void setBlack(Integer black) {

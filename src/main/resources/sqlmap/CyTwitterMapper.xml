@@ -295,10 +295,16 @@
 
   <select id="queryByKeyWords" resultType="com.cunyun.zoneadmin.dto.CyTwitterDto" parameterType="com.cunyun.zoneadmin.dto.CyTwitterDto">
     SELECT
-      *
+    id,
+    uid,
+    title,
+    content,
+    created_time createdTime,
+    icon
     FROM
     cy_twitter
-    WHERE 1=1
+    WHERE
+    1 = 1
     <include refid="query_teiter_where"></include>
     ORDER BY
       created_time DESC

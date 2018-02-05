@@ -51,7 +51,9 @@ public class CyTwitterServiceImpl implements CyTwitterService {
         List<CyTwitterDto> lists = cyTwitterMapper.queryByKeyWords(cyTwitterDto);
         for (CyTwitterDto list:lists) {
             CyUser cyUser1 =cyUserMapper.queryByUuid(list.getUid());
-            list.setNickName(cyUser1.getNickName());
+            if(cyUser1!=null){
+                list.setNickName(cyUser1.getNickName());
+            }
         }
         page.setRows(lists);
     }

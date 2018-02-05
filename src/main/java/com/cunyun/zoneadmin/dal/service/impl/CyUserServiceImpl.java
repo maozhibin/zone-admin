@@ -166,4 +166,28 @@ public class CyUserServiceImpl implements CyUserService{
         List<CyUserDto> lists = cyUserMapper.blackList(cyUserDto);
         page.setRows(lists);
     }
+
+    @Override
+    public void userInviteInfoList(Page<CyUserDto> page, CyUserDto cyUserDto) {
+        cyUserDto.setBegin(page.getOffset());
+        cyUserDto.setEnd(page.getLimit());
+        int total = cyUserMapper.totalCount(cyUserDto);
+        page.setTotal(total);
+        List<CyUserDto> lists = cyUserMapper.list(cyUserDto);
+        for (CyUserDto list:lists) {
+            String inviteUid = list.getUid();
+            Integer count = cyUserMapper.queryByIniviteUid(inviteUid);
+            list.setIniviteCount(count);
+        }
+        page.setRows(lists);
+    }
+
+    @Override
+    public void queryIniviteUidUser(Page<CyUserDto> page, CyUserDto cyUserDto) {
+        cyUserDto.setEnd(page.getLimit());
+        int total = cyUserMapper.queryByIniviteUid(cyUserDto.getInviteUid());
+        page.setTotal(total);
+        List<CyUserDto> lists = cyUserMapper.queryIniviteUidUser(cyUserDto);
+        page.setRows(lists);
+    }
 }

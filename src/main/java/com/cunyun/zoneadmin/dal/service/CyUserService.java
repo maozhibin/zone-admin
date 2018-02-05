@@ -20,4 +20,8 @@ public interface CyUserService {
     void updateVerifyInfo(CyUserDto cyUserDto);
 
     void blackList(Page<CyUserDto> page, CyUserDto cyUserDto);
+
+    void userInviteInfoList(Page<CyUserDto> page, CyUserDto cyUserDto);
+
+    void queryIniviteUidUser(Page<CyUserDto> page, CyUserDto cyUserDto);
 }
