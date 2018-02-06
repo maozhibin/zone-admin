@@ -1,9 +1,11 @@
 package com.cunyun.zoneadmin.dal.service.impl;
 
+import com.cunyun.zoneadmin.dal.dao.CyTwitterActivityDetailMapper;
 import com.cunyun.zoneadmin.dal.dao.CyTwitterMapper;
 import com.cunyun.zoneadmin.dal.dao.CyUserMapper;
 import com.cunyun.zoneadmin.dal.ext.Page;
 import com.cunyun.zoneadmin.dal.model.CyTwitter;
+import com.cunyun.zoneadmin.dal.model.CyTwitterActivityDetail;
 import com.cunyun.zoneadmin.dal.model.CyUser;
 import com.cunyun.zoneadmin.dal.service.CyTwitterService;
 import com.cunyun.zoneadmin.dto.CyTwitterDto;
@@ -22,8 +24,8 @@ public class CyTwitterServiceImpl implements CyTwitterService {
     private CyTwitterMapper cyTwitterMapper;
     @Resource
     private CyUserMapper cyUserMapper;
-
-
+    @Resource
+    private CyTwitterActivityDetailMapper cyTwitterActivityDetailMapper;
     @Override
     public void twitterList(Page<CyTwitterDto> page, CyTwitterDto cyTwitterDto) {
         String nickName = cyTwitterDto.getNickName();
@@ -54,8 +56,29 @@ public class CyTwitterServiceImpl implements CyTwitterService {
             if(cyUser1!=null){
                 list.setNickName(cyUser1.getNickName());
             }
+            if("activity".equals(list.getTwitterType())){
+                CyTwitterActivityDetail cyTwitterActivityDetail = cyTwitterActivityDetailMapper.selectByPrimaryKey(list.getTwitterId());
+                if(cyTwitterActivityDetail!=null){
+                    list.setSponsor(cyTwitterActivityDetail.getSponsor());
+                    list.setActivityArea(cyTwitterActivityDetail.getActivityArea());
+                    list.setActivityTime(cyTwitterActivityDetail.getActivityTime());
+                }
+            }
         }
         page.setRows(lists);
+    }
+
+    @Override
+    public void byIdDelete(Integer id) {
+        cyTwitterMapper.byIdDelete(id);
+    }
+
+    @Override
+    public void update(CyTwitterDto cyTwitterDto) {
+        CyTwitter cyTwitter = new CyTwitter();
+        cyTwitter.setId(cyTwitterDto.getId());
+        cyTwitter.setPushStatus(cyTwitterDto.getPushStatus());
+        cyTwitterMapper.updateByPrimaryKeySelective(cyTwitter);
     }
 }
 

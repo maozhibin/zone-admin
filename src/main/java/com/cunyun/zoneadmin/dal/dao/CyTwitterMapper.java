@@ -24,5 +24,7 @@ public interface CyTwitterMapper {
 
     List<CyTwitterDto> queryByKeyWords(CyTwitterDto cyTwitterDto);
 
+    void byIdDelete(Integer id);
+
 //    List<CyTwitterDto> queryByKeyWords(@Param("begin") int offset, @Param("end")int limit, @Param("createdTime")Date createdTime, @Param("uid")String uid, @Param("title")String title,@Param("twitterType")String twitterType);
 }

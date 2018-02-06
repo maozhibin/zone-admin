@@ -282,6 +282,12 @@
     <if test="twitterType != null and twitterType != '' ">
       and twitter_type = #{twitterType,jdbcType=VARCHAR}
     </if>
+    <if test="pushStatus != null and pushStatus != '' ">
+      and push_status = #{pushStatus,jdbcType=INTEGER}
+    </if>
+    <if test="pushStatus == 0 ">
+      and push_status = #{pushStatus,jdbcType=INTEGER}
+    </if>
   </sql>
 
   <select id="totalCount" resultType="int" parameterType="com.cunyun.zoneadmin.dto.CyTwitterDto">
@@ -296,10 +302,13 @@
   <select id="queryByKeyWords" resultType="com.cunyun.zoneadmin.dto.CyTwitterDto" parameterType="com.cunyun.zoneadmin.dto.CyTwitterDto">
     SELECT
     id,
+    twitter_id twitterId,
     uid,
     title,
     content,
+    twitter_type twitterType,
     created_time createdTime,
+    push_status pushStatus,
     icon
     FROM
     cy_twitter
@@ -310,4 +319,12 @@
       created_time DESC
     LIMIT #{begin},#{end}
   </select>
+
+  <delete id="byIdDelete">
+        DELETE
+    FROM
+        cy_twitter
+    WHERE
+        id =#{id}
+  </delete>
 </mapper>

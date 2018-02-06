@@ -7,11 +7,21 @@ public class CyTwitterActivityDetail {
 
     private String activityArea;
 
-    private Date activityTime;
+    private String sponsor;
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
+    }
+
+    public String getSponsor() {
+
+        return sponsor;
+    }
+
+    private String activityTime;
 
     private String xCoordinates;
 
-    private String mapType;
 
     private Date createdTime;
 
@@ -31,12 +41,16 @@ public class CyTwitterActivityDetail {
         this.activityArea = activityArea;
     }
 
-    public Date getActivityTime() {
-        return activityTime;
+
+
+
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
     }
 
-    public void setActivityTime(Date activityTime) {
-        this.activityTime = activityTime;
+    public String getActivityTime() {
+
+        return activityTime;
     }
 
     public String getxCoordinates() {
@@ -47,12 +61,17 @@ public class CyTwitterActivityDetail {
         this.xCoordinates = xCoordinates;
     }
 
-    public String getMapType() {
-        return mapType;
-    }
 
-    public void setMapType(String mapType) {
-        this.mapType = mapType;
+    @Override
+    public String toString() {
+        return "CyTwitterActivityDetail{" +
+                "twitterId='" + twitterId + '\'' +
+                ", activityArea='" + activityArea + '\'' +
+                ", sponsor='" + sponsor + '\'' +
+                ", activityTime='" + activityTime + '\'' +
+                ", xCoordinates='" + xCoordinates + '\'' +
+                ", createdTime=" + createdTime +
+                '}';
     }
 
     public Date getCreatedTime() {
@@ -63,19 +82,4 @@ public class CyTwitterActivityDetail {
         this.createdTime = createdTime;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", twitterId=").append(twitterId);
-        sb.append(", activityArea=").append(activityArea);
-        sb.append(", activityTime=").append(activityTime);
-        sb.append(", xCoordinates=").append(xCoordinates);
-        sb.append(", mapType=").append(mapType);
-        sb.append(", createdTime=").append(createdTime);
-        sb.append("]");
-        return sb.toString();
-    }
 }

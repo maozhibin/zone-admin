@@ -6,11 +6,11 @@
     <result column="activity_area" jdbcType="VARCHAR" property="activityArea" />
     <result column="activity_time" jdbcType="TIMESTAMP" property="activityTime" />
     <result column="x_coordinates" jdbcType="VARCHAR" property="xCoordinates" />
-    <result column="map_type" jdbcType="VARCHAR" property="mapType" />
+    <result column="sponsor" jdbcType="VARCHAR" property="sponsor" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    twitter_id, activity_area, activity_time, x_coordinates, map_type, created_time
+    twitter_id, activity_area, sponsor,activity_time, x_coordinates, created_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 

@@ -49,6 +49,8 @@ public class CyTwitterDto {
 
     private Date endTimeDate;
 
+    private String activityTime;
+
     @Override
     public String toString() {
         return "CyTwitterDto{" +
@@ -67,6 +69,9 @@ public class CyTwitterDto {
                 ", endTime='" + endTime + '\'' +
                 ", statrTime='" + statrTime + '\'' +
                 ", endTimeDate=" + endTimeDate +
+                ", activityTime='" + activityTime + '\'' +
+                ", activityArea='" + activityArea + '\'' +
+                ", sponsor='" + sponsor + '\'' +
                 ", statrTimeDate=" + statrTimeDate +
                 ", topicClass='" + topicClass + '\'' +
                 ", voteCanAddOption=" + voteCanAddOption +
@@ -79,6 +84,36 @@ public class CyTwitterDto {
                 ", fromUrl='" + fromUrl + '\'' +
                 '}';
     }
+
+    private String activityArea;
+
+    public void setActivityTime(String activityTime) {
+        this.activityTime = activityTime;
+    }
+
+    public void setActivityArea(String activityArea) {
+        this.activityArea = activityArea;
+    }
+
+    public void setSponsor(String sponsor) {
+        this.sponsor = sponsor;
+    }
+
+    public String getActivityArea() {
+
+        return activityArea;
+    }
+
+    public String getSponsor() {
+        return sponsor;
+    }
+
+    public String getActivityTime() {
+
+        return activityTime;
+    }
+
+    private String sponsor;
 
     public void setEndTimeDate(Date endTimeDate) {
         this.endTimeDate = endTimeDate;

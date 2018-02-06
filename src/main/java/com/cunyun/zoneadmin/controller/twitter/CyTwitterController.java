@@ -32,4 +32,32 @@ public class CyTwitterController {
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"查出成功",map);
     }
 
+    /**
+     * 删除帖子
+     */
+    @RequestMapping(value = "delete" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg delete(Integer id){
+        JsonResponseMsg result = new JsonResponseMsg();
+        if(id==null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+        }
+        cyTwitterService.byIdDelete(id);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"删除成功");
+    }
+
+
+    /**
+     * 修改帖子
+     */
+    @RequestMapping(value = "updatePushStatus" ,method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponseMsg updatePushStatus(@RequestBody CyTwitterDto cyTwitterDto){
+        JsonResponseMsg result = new JsonResponseMsg();
+        if(cyTwitterDto.getId()==null){
+            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+        }
+        cyTwitterService.update(cyTwitterDto);
+        return result.fill(JsonResponseMsg.CODE_SUCCESS,"查出成功");
+    }
 }
