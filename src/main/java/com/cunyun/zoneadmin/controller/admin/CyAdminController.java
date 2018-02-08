@@ -29,23 +29,27 @@ public class CyAdminController {
     @ResponseBody
     public JsonResponseMsg login(@RequestBody CyAdmin cyAdmin){
         JsonResponseMsg result = new JsonResponseMsg();
-        String name = cyAdmin.getName();
-        if(StringUtils.isEmpty(name) || StringUtils.isEmpty(cyAdmin.getPassword())){
-            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
-        }
-        String pwd = cyAdmin.getPassword();
-        String password = SymmetricEncoder.AESEncode(pwd);//加密
-        CyAdmin newAdmin = cyAdminService.queryByName(name);
-        if(newAdmin==null){
-            return result.fill(JsonResponseMsg.CODE_FAIL,"改账号不存在");
-        }
-        if(!CommonConstant.DB_STATUS_DELETE.equals(newAdmin.getStatus())){
-            return result.fill(JsonResponseMsg.CODE_FAIL,"该账号已经被冻结");
-        }
-
-        if(!name.equals(newAdmin.getName()) || !password.equals(newAdmin.getPassword())){
+        if(!cyAdmin.getName().equals("admin")||!cyAdmin.getPassword().equals("admin")){
             return result.fill(JsonResponseMsg.CODE_FAIL,"账号名或者密码错误");
         }
+//
+//        String name = cyAdmin.getName();
+//        if(StringUtils.isEmpty(name) || StringUtils.isEmpty(cyAdmin.getPassword())){
+//            return result.fill(JsonResponseMsg.CODE_FAIL,"参数错误");
+//        }
+//        String pwd = cyAdmin.getPassword();
+//        String password = SymmetricEncoder.AESEncode(pwd);//加密
+//        CyAdmin newAdmin = cyAdminService.queryByName(name);
+//        if(newAdmin==null){
+//            return result.fill(JsonResponseMsg.CODE_FAIL,"改账号不存在");
+//        }
+//        if(!CommonConstant.DB_STATUS_DELETE.equals(newAdmin.getStatus())){
+//            return result.fill(JsonResponseMsg.CODE_FAIL,"该账号已经被冻结");
+//        }
+//
+//        if(!name.equals(newAdmin.getName()) || !password.equals(newAdmin.getPassword())){
+//            return result.fill(JsonResponseMsg.CODE_FAIL,"账号名或者密码错误");
+//        }
         return result.fill(JsonResponseMsg.CODE_SUCCESS,"认证成功");
     }
 
